@@ -18,9 +18,9 @@ const Hero = () => {
   }
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/deeptadeeproy', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://in.linkedin.com/in/deeptadeeproy', label: 'LinkedIn' },
-    { icon: Mail, href: 'mailto:deeptadeeproy@yahoo.in', label: 'Email' }
+    { icon: Github, href: 'https://github.com/deeptadeeproy', label: 'GitHub', color: 'hover:text-gray-300' },
+    { icon: Linkedin, href: 'https://in.linkedin.com/in/deeptadeeproy', label: 'LinkedIn', color: 'hover:text-blue-400' },
+    { icon: Mail, href: 'mailto:deeptadeeproy@yahoo.in', label: 'Email', color: 'hover:text-purple-300' }
   ]
 
   return (
@@ -125,7 +125,7 @@ const Hero = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-full glass-effect text-white hover:text-purple-300 transition-all duration-300 hover:scale-110"
+                    className={`p-3 rounded-full glass-effect text-white transition-all duration-300 hover:scale-110 ${social.color}`}
                     whileHover={{ y: -5 }}
                     whileTap={{ scale: 0.95 }}
                     initial={{ opacity: 0, y: 20 }}
