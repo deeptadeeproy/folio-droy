@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
+import { useIntersectionObserver } from '../utils/useIntersectionObserver'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
 import { Button } from './ui/button'
 import { 
@@ -16,10 +16,7 @@ import {
 
 const Projects = () => {
   const [selectedCategory, setSelectedCategory] = useState('all')
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1
-  })
+  const [ref, inView] = useIntersectionObserver()
 
   const categories = [
     { id: 'all', name: 'All Projects', icon: Code },

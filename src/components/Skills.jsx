@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
+import { useIntersectionObserver } from '../utils/useIntersectionObserver'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
 import { 
   Code, 
@@ -26,10 +26,7 @@ import FirebaseIcon from '../assets/icons/firebase.svg?react';
 import ExpressIcon from '../assets/icons/express.svg?react';
 
 const Skills = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1
-  })
+  const [ref, inView] = useIntersectionObserver()
 
   const skillCategories = [
     {

@@ -1,14 +1,11 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
+import { useIntersectionObserver } from '../utils/useIntersectionObserver'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
 import { User, Code, Palette, Target, Award, Heart } from 'lucide-react'
 
 const About = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1
-  })
+  const [ref, inView] = useIntersectionObserver()
 
   const stats = [
     { icon: Code, value: '50+', label: 'Projects Completed' },

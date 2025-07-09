@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
+import { useIntersectionObserver } from '../utils/useIntersectionObserver'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
 import { Button } from './ui/button'
 import { 
@@ -138,10 +138,7 @@ function TimeZoneClocks() {
 }
 
 const Contact = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1
-  })
+  const [ref, inView] = useIntersectionObserver()
 
   // Contact info JSON
   const contactInfo = {
@@ -195,13 +192,13 @@ const Contact = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 justify-items-center lg:justify-items-start">
+        <div className="grid lg:grid-cols-2 gap-3 justify-items-center lg:justify-items-start">
           {/* Calendar and Clock */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-8"
+            className="space-y-4"
           >
             <Card className="glass-effect border-white/10 hover:border-white/20 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/10 group bg-transparent">
               <CardHeader className="pb-6 bg-transparent">
@@ -221,7 +218,7 @@ const Contact = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="space-y-8"
+            className="space-y-4"
           >
             <Card className="glass-effect border-white/10 hover:border-white/20 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/10 group bg-transparent">
               <CardHeader className="pb-6 bg-transparent">
