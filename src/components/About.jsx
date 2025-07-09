@@ -19,7 +19,7 @@ const About = () => {
 
   const skills = [
     'React & Next.js', 'Node.js & Express', 'Java & Spring Boot', 'PostgreSQL & MongoDB',
-    'TypeScript', 'Tailwind CSS', 'Docker & AWS', 'GraphQL & REST APIs'
+    'TypeScript', 'Tailwind CSS', 'Docker & Firebase', 'GraphQL & REST APIs'
   ]
 
   return (
@@ -85,13 +85,8 @@ const About = () => {
               <CardContent className="space-y-4">
                 <p className="text-gray-300 leading-relaxed">
                   I'm a dedicated full-stack software developer with a passion for creating innovative digital solutions. 
-                  With over 3 years of experience in web development, I specialize in building scalable applications 
+                  With over 4 years of experience in web development, I specialize in building scalable applications 
                   that deliver exceptional user experiences.
-                </p>
-                <p className="text-gray-300 leading-relaxed">
-                  My journey in tech started with curiosity and has evolved into a deep understanding of modern 
-                  development practices. I believe in writing clean, maintainable code and staying up-to-date 
-                  with the latest technologies and best practices.
                 </p>
               </CardContent>
             </Card>
@@ -105,8 +100,7 @@ const About = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-300 leading-relaxed mb-4">
-                  I create end-to-end solutions that combine beautiful design with powerful functionality. 
-                  From concept to deployment, I handle every aspect of the development process.
+                  Combining beautiful design with powerful functionality. From concept to Production.
                 </p>
                 <div className="grid grid-cols-2 gap-2">
                   {skills.map((skill, index) => (

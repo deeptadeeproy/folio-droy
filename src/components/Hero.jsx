@@ -67,13 +67,14 @@ const Hero = () => {
               <TypeAnimation
                 sequence={[
                   'Full Stack Developer',
-                  2000,
+                  1500,
                   'UI/UX Designer',
-                  2000,
+                  1500,
                   'Problem Solver',
-                  2000,
+                  1500,
                   'Creative Thinker',
-                  2000,
+                  1500,
+                  ''
                 ]}
                 wrapper="span"
                 speed={50}
@@ -149,21 +150,10 @@ const Hero = () => {
                     animate={{ y: [0, 10, 0] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
-                    <span className="text-sm mb-2">Scroll Down</span>
+                    <span className="text-sm mb-2">Scroll Down ↓</span>
                     <div className="relative">
-                      <Mouse size={20} className="mb-1" />
-                      <motion.div
-                        className="w-1 h-2 bg-white/60 mx-auto mt-1 rounded-full"
-                        animate={{ 
-                          y: [0, 8, 0],
-                          opacity: [0.6, 1, 0.6]
-                        }}
-                        transition={{ 
-                          duration: 1.5, 
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        }}
-                      />
+                      <Mouse size={30} className="mb-1" />
+                      
                     </div>
                   </motion.div>
                 </Link>

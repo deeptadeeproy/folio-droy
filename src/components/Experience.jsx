@@ -291,7 +291,7 @@ const Experience = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
               { icon: Users, value: '50+', label: 'Team Members Led' },
-              { icon: TrendingUp, value: '4+', label: 'Multi-billion Dollar Projects Delivered' },
+              { icon: TrendingUp, value: '4+', label: 'Multi-billion Dollar Projects' },
               { icon: Award, value: '8+', label: 'Best Performer' },
               { icon: Star, value: '100%', label: 'Client Satisfaction' }
             ].map((stat, index) => (

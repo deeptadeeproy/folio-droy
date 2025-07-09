@@ -58,7 +58,7 @@ const Projects = () => {
       description: 'A cross-platform mobile app for fitness tracking with workout plans, progress analytics, and social features.',
       image: '💪',
       category: 'mobile',
-      technologies: ['React Native', 'Node.js', 'PostgreSQL', 'AWS'],
+      technologies: ['React Native', 'Node.js', 'PostgreSQL', 'Firebase'],
       liveUrl: 'https://fitness-app-demo.com',
       githubUrl: 'https://github.com/deeptadeep/fitness-app',
       featured: false
@@ -163,31 +163,6 @@ const Projects = () => {
                 className="group"
               >
                 <Card className="glass-effect border-white/10 h-full hover:border-white/20 transition-all duration-300 hover:scale-105 overflow-hidden bg-transparent">
-                  <div className="relative">
-                    <div className="h-32 flex items-center justify-center bg-transparent">
-                      <div className="text-6xl">{project.image}</div>
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                      <div className="p-4 w-full">
-                        <div className="flex gap-2">
-                          {project.liveUrl && (
-                            <Button variant="glass" size="sm" asChild>
-                              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                                <ExternalLink size={14} />
-                              </a>
-                            </Button>
-                          )}
-                          {project.githubUrl && (
-                            <Button variant="glass" size="sm" asChild>
-                              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                                <Github size={14} />
-                              </a>
-                            </Button>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                   <CardHeader className="pb-3 bg-transparent">
                     <CardTitle className="text-lg text-white">{project.title}</CardTitle>
                   </CardHeader>
@@ -208,6 +183,24 @@ const Projects = () => {
                         <span className="px-2 py-1 bg-gray-500/20 text-gray-300 text-xs rounded-full">
                           +{project.technologies.length - 3}
                         </span>
+                      )}
+                    </div>
+                    <div className="flex gap-2 pt-2">
+                      {project.liveUrl && (
+                        <Button variant="glass" size="sm" asChild>
+                          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink size={14} className="mr-1" />
+                            Live
+                          </a>
+                        </Button>
+                      )}
+                      {project.githubUrl && (
+                        <Button variant="glass" size="sm" asChild>
+                          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                            <Github size={14} className="mr-1" />
+                            Code
+                          </a>
+                        </Button>
                       )}
                     </div>
                   </CardContent>
