@@ -1,0 +1,177 @@
+import React from 'react'
+import { motion } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
+import { User, Code, Palette, Target, Award, Heart } from 'lucide-react'
+
+const About = () => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1
+  })
+
+  const stats = [
+    { icon: Code, value: '50+', label: 'Projects Completed' },
+    { icon: Award, value: '3+', label: 'Years Experience' },
+    { icon: Heart, value: '100%', label: 'Client Satisfaction' },
+    { icon: Target, value: '24/7', label: 'Support Available' }
+  ]
+
+  const skills = [
+    'React & Next.js', 'Node.js & Express', 'Java & Spring Boot', 'PostgreSQL & MongoDB',
+    'TypeScript', 'Tailwind CSS', 'Docker & AWS', 'GraphQL & REST APIs'
+  ]
+
+  return (
+    <section id="about" className="py-20 relative">
+      <div className="container mx-auto px-6">
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 50 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            About <span className="gradient-text">Me</span>
+          </h2>
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            Passionate full-stack developer with a love for creating beautiful, functional, and user-centric digital experiences.
+          </p>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
+          {/* Left side - Stats */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="space-y-8"
+          >
+            {/* Stats */}
+            <div className="grid grid-cols-2 gap-6">
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+                  className="text-center"
+                >
+                  <div className="p-4 rounded-lg glass-effect mb-3 inline-block">
+                    <stat.icon size={32} className="text-purple-400" />
+                  </div>
+                  <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
+                  <div className="text-gray-400 text-sm">{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Right side - Content */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="space-y-6"
+          >
+            <Card className="bg-white/5 backdrop-blur-sm border-white/10">
+              <CardHeader>
+                <CardTitle className="text-2xl text-white flex items-center gap-3">
+                  <User className="text-purple-400" size={28} />
+                  Who I Am
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-gray-300 leading-relaxed">
+                  I'm a dedicated full-stack software developer with a passion for creating innovative digital solutions. 
+                  With over 3 years of experience in web development, I specialize in building scalable applications 
+                  that deliver exceptional user experiences.
+                </p>
+                <p className="text-gray-300 leading-relaxed">
+                  My journey in tech started with curiosity and has evolved into a deep understanding of modern 
+                  development practices. I believe in writing clean, maintainable code and staying up-to-date 
+                  with the latest technologies and best practices.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/5 backdrop-blur-sm border-white/10">
+              <CardHeader>
+                <CardTitle className="text-2xl text-white flex items-center gap-3">
+                  <Palette className="text-purple-400" size={28} />
+                  What I Do
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300 leading-relaxed mb-4">
+                  I create end-to-end solutions that combine beautiful design with powerful functionality. 
+                  From concept to deployment, I handle every aspect of the development process.
+                </p>
+                <div className="grid grid-cols-2 gap-2">
+                  {skills.map((skill, index) => (
+                    <motion.div
+                      key={skill}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={inView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ duration: 0.5, delay: 0.6 + index * 0.05 }}
+                      className="flex items-center gap-2 text-gray-300"
+                    >
+                      <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                      <span className="text-sm">{skill}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+
+        {/* Values section */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="text-center"
+        >
+          <h3 className="text-3xl font-bold text-white mb-12">
+            My <span className="gradient-text">Values</span>
+          </h3>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                title: 'Innovation',
+                description: 'Constantly exploring new technologies and creative solutions to solve complex problems.',
+                icon: '🚀'
+              },
+              {
+                title: 'Quality',
+                description: 'Committed to writing clean, efficient, and maintainable code that stands the test of time.',
+                icon: '✨'
+              },
+              {
+                title: 'Collaboration',
+                description: 'Believe in the power of teamwork and open communication to deliver exceptional results.',
+                icon: '🤝'
+              }
+            ].map((value, index) => (
+              <motion.div
+                key={value.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
+                className="p-6 rounded-lg bg-white/5 backdrop-blur-sm border-white/10 hover:border-purple-400/30 transition-all duration-300"
+              >
+                <div className="text-4xl mb-4">{value.icon}</div>
+                <h4 className="text-xl font-semibold text-white mb-3">{value.title}</h4>
+                <p className="text-gray-400 leading-relaxed">{value.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
+export default About 
