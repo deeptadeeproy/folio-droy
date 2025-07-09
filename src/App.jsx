@@ -89,17 +89,17 @@ function App() {
 
       {/* Scroll to top button */}
       {showScrollToTop && (
-        <motion.button
-          onClick={scrollToTop}
+      <motion.button
+        onClick={scrollToTop}
           className="fixed bottom-8 right-8 z-50 p-3 rounded-full gradient-bg text-white shadow-lg hover:shadow-xl transition-all duration-300 border-0 focus:outline-none"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2 }}
-        >
-          <ChevronUp size={24} />
-        </motion.button>
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 2 }}
+      >
+        <ChevronUp size={24} />
+      </motion.button>
       )}
 
       {/* Smooth scroll links */}

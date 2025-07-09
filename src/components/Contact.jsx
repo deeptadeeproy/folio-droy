@@ -192,7 +192,7 @@ const Contact = () => {
             direction="left"
             delay={0.2}
             inView={inView}
-            className="space-y-4 w-full"
+            className="space-y-4 w-full order-1 lg:order-1"
           >
             <GlassCard
               title="Calendar"
@@ -209,7 +209,7 @@ const Contact = () => {
             direction="right"
             delay={0.4}
             inView={inView}
-            className="space-y-4"
+            className="space-y-4 order-2 lg:order-2"
           >
             <GlassCard
               title="Let's Connect"
