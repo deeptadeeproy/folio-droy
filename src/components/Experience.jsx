@@ -222,8 +222,8 @@ const Experience = () => {
                   transition={{ duration: 0.6, delay: 1.0 + index * 0.2 }}
                   className="text-center p-4 min-w-[250px] w-[250px] h-40 flex flex-col justify-center"
                 >
-                  <div className="text-2xl font-bold text-white mb-2">{client.name}</div>
-                  <div className="text-sm text-gray-400">{client.type}</div>
+                      <div className="text-2xl font-bold text-white mb-2">{client.name}</div>
+                      <div className="text-sm text-gray-400">{client.type}</div>
                 </motion.div>
               ))}
             </div>
@@ -242,8 +242,8 @@ const Experience = () => {
                   transition={{ duration: 0.6, delay: 1.0 + index * 0.2 }}
                   className={`text-center flex-shrink-0 p-0 min-w-[220px] w-[220px] h-40 flex flex-col justify-center${index === arr.length - 1 ? ' pr-4' : ''}`}
                 >
-                  <div className="text-2xl font-bold text-white mb-2">{client.name}</div>
-                  <div className="text-sm text-gray-400">{client.type}</div>
+                      <div className="text-2xl font-bold text-white mb-2">{client.name}</div>
+                      <div className="text-sm text-gray-400">{client.type}</div>
                 </motion.div>
               ))}
             </div>

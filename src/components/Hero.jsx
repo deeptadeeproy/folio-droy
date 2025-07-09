@@ -100,12 +100,12 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1 }}
             >
-              <Link to="projects" smooth={true} duration={800}>
-                <Button variant="gradient" size="lg" className="text-lg px-8 py-3">
+              <Link to="projects" smooth={true} duration={800} className="w-[70%] sm:w-auto">
+                <Button variant="gradient" size="lg" className="text-lg px-8 py-3 w-full sm:w-auto">
                   View My Work
                 </Button>
               </Link>
-              <Button variant="glass" size="lg" className="text-lg px-8 py-3" onClick={handleDownloadCV}>
+              <Button variant="glass" size="lg" className="text-lg px-8 py-3 w-[70%] sm:w-auto" onClick={handleDownloadCV}>
                 <Download className="w-5 h-5 mr-2" />
                 Download CV
               </Button>
