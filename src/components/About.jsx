@@ -141,18 +141,15 @@ const About = () => {
             {[
               {
                 title: 'Innovation',
-                description: 'Constantly exploring new technologies and creative solutions to solve complex problems.',
-                icon: '🚀'
+                description: 'Constantly exploring new technologies and creative solutions to solve complex problems.'
               },
               {
                 title: 'Quality',
-                description: 'Committed to writing clean, efficient, and maintainable code that stands the test of time.',
-                icon: '✨'
+                description: 'Committed to writing clean, efficient, and maintainable code that stands the test of time.'
               },
               {
                 title: 'Collaboration',
-                description: 'Believe in the power of teamwork and open communication to deliver exceptional results.',
-                icon: '🤝'
+                description: 'Believe in the power of teamwork and open communication to deliver exceptional results.'
               }
             ].map((value, index) => (
               <motion.div
@@ -160,9 +157,8 @@ const About = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
-                className="p-6 rounded-lg bg-white/5 backdrop-blur-sm border-white/10 hover:border-purple-400/30 transition-all duration-300"
+                className="p-6 transition-all duration-300"
               >
-                <div className="text-4xl mb-4">{value.icon}</div>
                 <h4 className="text-xl font-semibold text-white mb-3">{value.title}</h4>
                 <p className="text-gray-400 leading-relaxed">{value.description}</p>
               </motion.div>

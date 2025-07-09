@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-scroll'
 import { TypeAnimation } from 'react-type-animation'
 import { Button } from './ui/button'
-import { Github, Linkedin, Mail, Download, MousePointer2 } from 'lucide-react'
+import { Github, Linkedin, Mail, Download, Mouse } from 'lucide-react'
 import resumeFile from '../assets/resume/DeeptadeepRoy_resume.pdf'
 
 const Hero = () => {
@@ -152,11 +152,11 @@ const Hero = () => {
                   >
                     <span className="text-sm mb-2">Scroll Down</span>
                     <div className="relative">
-                      <MousePointer2 size={20} className="mb-1" />
+                      <Mouse size={20} className="mb-1" />
                       <motion.div
-                        className="w-0.5 h-3 bg-white/60 mx-auto mt-1"
+                        className="w-1 h-2 bg-white/60 mx-auto mt-1 rounded-full"
                         animate={{ 
-                          height: [12, 20, 12],
+                          y: [0, 8, 0],
                           opacity: [0.6, 1, 0.6]
                         }}
                         transition={{ 
