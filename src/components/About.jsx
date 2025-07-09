@@ -59,7 +59,7 @@ const About = () => {
                   className="text-center"
                 >
                   <div className="p-4 rounded-lg glass-effect mb-3 inline-block">
-                    <stat.icon size={32} className="text-purple-400" />
+                    <stat.icon size={32} className="text-[#d6c95fc6]" />
                   </div>
                   <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
                   <div className="text-gray-400 text-sm">{stat.label}</div>
@@ -78,7 +78,7 @@ const About = () => {
             <Card className="bg-white/5 backdrop-blur-sm border-white/10">
               <CardHeader>
                 <CardTitle className="text-2xl text-white flex items-center gap-3">
-                  <User className="text-purple-400" size={28} />
+                  <User className="text-[#d6c95fc6]" size={28} />
                   Who I Am
                 </CardTitle>
               </CardHeader>
@@ -99,7 +99,7 @@ const About = () => {
             <Card className="bg-white/5 backdrop-blur-sm border-white/10">
               <CardHeader>
                 <CardTitle className="text-2xl text-white flex items-center gap-3">
-                  <Palette className="text-purple-400" size={28} />
+                  <Palette className="text-[#d6c95fc6]" size={28} />
                   What I Do
                 </CardTitle>
               </CardHeader>
@@ -117,7 +117,7 @@ const About = () => {
                       transition={{ duration: 0.5, delay: 0.6 + index * 0.05 }}
                       className="flex items-center gap-2 text-gray-300"
                     >
-                      <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                      <div className="w-2 h-2 bg-[#d6c95fc6] rounded-full"></div>
                       <span className="text-sm">{skill}</span>
                     </motion.div>
                   ))}

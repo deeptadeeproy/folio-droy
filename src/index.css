@@ -92,6 +92,13 @@
     background: linear-gradient(135deg, #d6c95fc6 0%, #5c3f73 100%);
   }
   
+  .gradient-text-button {
+    background: linear-gradient(135deg, #d6c95fc6 0%, #5c3f73 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
   .gradient-border {
     position: relative;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);

@@ -181,6 +181,43 @@ const Experience = () => {
           </div>
         </div>
 
+        {/* Clients */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="mb-20"
+        >
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold text-white mb-4">
+              Notable <span className="gradient-text">Clients</span>
+            </h3>
+            <p className="text-gray-400">Trusted by leading global brands</p>
+          </div>
+          <div className="flex justify-center items-center gap-8 md:gap-12">
+            {[
+              { name: 'Tiffany & Co.', type: 'Luxury Retail' },
+              { name: 'GAP', type: 'Fashion Retail' },
+              { name: 'CMA-CGM', type: 'Shipping & Logistics' }
+            ].map((client, index) => (
+              <motion.div
+                key={client.name}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={inView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.6, delay: 1.0 + index * 0.2 }}
+                className="text-center"
+              >
+                <Card className="glass-effect border-white/10 hover:border-white/20 transition-all duration-300 p-6 min-w-[200px]">
+                  <CardContent className="p-0">
+                    <div className="text-2xl font-bold text-white mb-2">{client.name}</div>
+                    <div className="text-sm text-gray-400">{client.type}</div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
         {/* Education */}
         <div className="mb-20">
           <motion.div
@@ -274,6 +311,8 @@ const Experience = () => {
             ))}
           </div>
         </motion.div>
+
+
       </div>
     </section>
   )

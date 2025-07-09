@@ -151,9 +151,7 @@ const Skills = () => {
               <Card className="bg-white/5 backdrop-blur-sm border-white/10 h-full hover:border-white/20 transition-all duration-300">
                 <CardHeader>
                   <CardTitle className="text-xl text-white flex items-center gap-3">
-                    <div className={`p-2 rounded-lg bg-gradient-to-r ${category.color}`}>
-                      <category.icon size={24} className="text-white" />
-                    </div>
+                    <category.icon size={24} className={`text-gradient-to-r ${category.color}`} />
                     {category.title}
                   </CardTitle>
                 </CardHeader>
@@ -197,7 +195,7 @@ const Skills = () => {
               >
                 <div className="p-6 rounded-lg bg-white/5 backdrop-blur-sm border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105 text-center">
                   <div className="text-4xl mb-3 flex items-center justify-center h-12">
-                    <tech.icon className="h-10 w-10" />
+                    <tech.icon className="h-10 w-10 text-[#d6c95fc6]" />
                   </div>
                   <h4 className="text-lg font-semibold text-white">{tech.name}</h4>
                 </div>

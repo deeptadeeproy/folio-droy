@@ -54,7 +54,7 @@ const Hero = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.4, duration: 0.8 }}
             >
-              <span className="gradient-text">Deeptadeep Roy</span>
+              <span className="gradient-text-button">Deeptadeep Roy</span>
             </motion.h1>
 
             {/* Typewriter effect */}
@@ -89,8 +89,7 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
             >
-              Crafting digital experiences with modern technologies and innovative design. 
-              Passionate about creating scalable solutions that make a difference.
+              Creating digital experiences since 2019.
             </motion.p>
 
             {/* CTA Buttons */}
