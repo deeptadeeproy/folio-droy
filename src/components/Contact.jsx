@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
@@ -13,11 +13,51 @@ import {
   CheckCircle, 
   Github, 
   Linkedin, 
-  Twitter,
+  Instagram,
   MessageSquare,
   Clock,
   Globe
 } from 'lucide-react'
+
+// Add clock component
+function formatTime(date, timeZone) {
+  return date.toLocaleTimeString('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true,
+    timeZone,
+  })
+}
+
+function TimeZoneClocks() {
+  const [now, setNow] = useState(new Date())
+  useEffect(() => {
+    const interval = setInterval(() => setNow(new Date()), 1000)
+    return () => clearInterval(interval)
+  }, [])
+  const userTime = formatTime(now)
+  const indiaTime = formatTime(now, 'Asia/Kolkata')
+  const userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone
+  return (
+    <div className="mt-8">
+      <Card className="glass-effect border-0 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/10 group bg-transparent rounded-2xl p-8">
+        <CardContent className="bg-transparent">
+          <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
+            <div className="flex flex-col items-center">
+              <span className="font-mono text-4xl text-gray-400" style={{ fontFamily: 'Geist Mono, monospace', fontSize: '2.25rem' }}>{userTime}</span>
+              <span className="text-xs text-gray-400 mt-2">Your Time ({userTZ})</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <span className="font-mono text-4xl text-gray-400" style={{ fontFamily: 'Geist Mono, monospace', fontSize: '2.25rem' }}>{indiaTime}</span>
+              <span className="text-xs text-gray-400 mt-2">India Time (Asia/Kolkata)</span>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  )
+}
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -34,55 +74,37 @@ const Contact = () => {
     threshold: 0.1
   })
 
-  const contactInfo = [
-    {
-      icon: Mail,
-      title: 'Email',
-      value: 'deeptadeep@example.com',
-      link: 'mailto:deeptadeep@example.com',
-      color: 'text-blue-400'
-    },
-    {
-      icon: Phone,
-      title: 'Phone',
-      value: '+1 (555) 123-4567',
-      link: 'tel:+15551234567',
-      color: 'text-green-400'
-    },
-    {
-      icon: MapPin,
-      title: 'Location',
-      value: 'San Francisco, CA',
-      link: null,
-      color: 'text-purple-400'
-    },
-    {
-      icon: Globe,
-      title: 'Website',
-      value: 'www.deeptadeep.dev',
-      link: 'https://deeptadeep.dev',
-      color: 'text-pink-400'
+  // Contact info JSON
+  const contactInfo = {
+    email: 'deeptadeeproy@yahoo.in',
+    phone: '+91 90738-40430',
+    location: 'Kolkata, India',
+    links: {
+      website: 'https://deeptadeep.dev',
+      github: 'https://github.com/deeptadeeproy',
+      linkedin: 'https://in.linkedin.com/in/deeptadeeproy',
+      instagram: 'https://instagram.com/deeptadeeproy'
     }
-  ]
+  };
 
   const socialLinks = [
     {
       icon: Github,
       name: 'GitHub',
-      url: 'https://github.com/deeptadeep',
+      url: contactInfo.links.github,
       color: 'hover:text-gray-300'
     },
     {
       icon: Linkedin,
       name: 'LinkedIn',
-      url: 'https://linkedin.com/in/deeptadeep',
+      url: contactInfo.links.linkedin,
       color: 'hover:text-blue-400'
     },
     {
-      icon: Twitter,
-      name: 'Twitter',
-      url: 'https://twitter.com/deeptadeep',
-      color: 'hover:text-blue-500'
+      icon: Instagram,
+      name: 'Instagram',
+      url: contactInfo.links.instagram,
+      color: 'hover:text-pink-500'
     }
   ]
 
@@ -158,34 +180,93 @@ const Contact = () => {
                 </p>
                 
                 <div className="space-y-4">
-                  {contactInfo.map((info, index) => (
-                    <motion.div
-                      key={info.title}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={inView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                      className="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-all duration-300 group/item"
-                    >
-                      <div className={`p-3 rounded-lg glass-effect ${info.color} group-hover/item:scale-110 transition-transform duration-300`}>
-                        <info.icon size={20} />
-                      </div>
-                      <div>
-                        <h4 className="text-white font-medium">{info.title}</h4>
-                        {info.link ? (
-                          <a 
-                            href={info.link} 
-                            className="text-gray-400 hover:text-purple-300 transition-colors duration-300"
-                            target={info.link.startsWith('http') ? '_blank' : undefined}
-                            rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                          >
-                            {info.value}
-                          </a>
-                        ) : (
-                          <p className="text-gray-400">{info.value}</p>
-                        )}
-                      </div>
-                    </motion.div>
-                  ))}
+                  {/* Replace the old contactInfo and socialLinks arrays with this JSON in the rendering logic. */}
+                  {/* Email */}
+                  <motion.div
+                    key="email"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                    className="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-all duration-300 group/item"
+                  >
+                    <div className="p-3 rounded-lg glass-effect text-purple-400 group-hover/item:scale-110 transition-transform duration-300">
+                      <Mail size={20} />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-medium">Email</h4>
+                      <a 
+                        href={`mailto:${contactInfo.email}`} 
+                        className="text-gray-400 hover:text-purple-300 transition-colors duration-300"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {contactInfo.email}
+                      </a>
+                    </div>
+                  </motion.div>
+
+                  {/* Phone */}
+                  <motion.div
+                    key="phone"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                    className="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-all duration-300 group/item"
+                  >
+                    <div className="p-3 rounded-lg glass-effect text-green-400 group-hover/item:scale-110 transition-transform duration-300">
+                      <Phone size={20} />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-medium">Phone</h4>
+                      <a 
+                        href={`tel:${contactInfo.phone.replace(/\s/g, '')}`} 
+                        className="text-gray-400 hover:text-purple-300 transition-colors duration-300"
+                      >
+                        {contactInfo.phone}
+                      </a>
+                    </div>
+                  </motion.div>
+
+                  {/* Location */}
+                  <motion.div
+                    key="location"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 0.6 }}
+                    className="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-all duration-300 group/item"
+                  >
+                    <div className="p-3 rounded-lg glass-effect text-purple-400 group-hover/item:scale-110 transition-transform duration-300">
+                      <MapPin size={20} />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-medium">Location</h4>
+                      <p className="text-gray-400">{contactInfo.location}</p>
+                    </div>
+                  </motion.div>
+
+                  {/* Website */}
+                  <motion.div
+                    key="website"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 0.7 }}
+                    className="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-all duration-300 group/item"
+                  >
+                    <div className="p-3 rounded-lg glass-effect text-pink-400 group-hover/item:scale-110 transition-transform duration-300">
+                      <Globe size={20} />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-medium">Website</h4>
+                      <a 
+                        href={contactInfo.links.website} 
+                        className="text-gray-400 hover:text-purple-300 transition-colors duration-300"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {contactInfo.links.website}
+                      </a>
+                    </div>
+                  </motion.div>
                 </div>
 
                 {/* Social Links */}
@@ -337,6 +418,7 @@ const Contact = () => {
                 )}
               </CardContent>
             </Card>
+            <TimeZoneClocks />
           </motion.div>
         </div>
 

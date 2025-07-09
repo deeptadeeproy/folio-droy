@@ -12,7 +12,7 @@ const About = () => {
 
   const stats = [
     { icon: Code, value: '50+', label: 'Projects Completed' },
-    { icon: Award, value: '3+', label: 'Years Experience' },
+    { icon: Award, value: '4+', label: 'Years Experience' },
     { icon: Heart, value: '100%', label: 'Client Satisfaction' },
     { icon: Target, value: '24/7', label: 'Support Available' }
   ]
@@ -135,7 +135,7 @@ const About = () => {
           className="text-center"
         >
           <h3 className="text-3xl font-bold text-white mb-12">
-            My <span className="gradient-text">Values</span>
+            Core <span className="gradient-text">Values</span>
           </h3>
           <div className="grid md:grid-cols-3 gap-8">
             {[

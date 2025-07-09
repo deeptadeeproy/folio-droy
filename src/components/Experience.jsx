@@ -24,17 +24,17 @@ const Experience = () => {
     {
       id: 1,
       title: 'Senior Full Stack Developer',
-      company: 'TechCorp Solutions',
-      location: 'San Francisco, CA',
-      period: '2022 - Present',
-      description: 'Leading development of enterprise-level applications using React, Node.js, and cloud technologies. Mentoring junior developers and implementing best practices.',
+      company: 'Infosys',
+      location: 'Bengaluru, India',
+      period: '2021 - Present',
+      description: 'Leading development of enterprise-level applications using React, Node.js, Java, and cloud technologies. Mentoring junior developers and implementing best practices.',
       achievements: [
         'Led a team of 5 developers to deliver 3 major projects',
         'Improved application performance by 40%',
         'Implemented CI/CD pipeline reducing deployment time by 60%',
         'Mentored 3 junior developers to senior level'
       ],
-      technologies: ['React', 'Node.js', 'AWS', 'Docker', 'MongoDB'],
+      technologies: ['React', 'Java', 'Node.js', 'AWS', 'Docker', 'PostgreSQL'],
       type: 'work'
     }
   ]
@@ -42,16 +42,15 @@ const Experience = () => {
   const education = [
     {
       id: 1,
-      title: 'Bachelor of Computer Science',
-      institution: 'MIT',
-      location: 'Cambridge, MA',
-      period: '2013 - 2017',
-      description: 'Major in Computer Science with minor in Mathematics',
+      title: 'Bachelor of Electrical Engineering',
+      institution: 'KIIT University',
+      location: 'Bhubaneshwar, India',
+      period: '2017 - 2021',
+      description: 'Major in Electrical Engineering with minor in Computer Science',
       achievements: [
-        'GPA: 3.8/4.0',
-        'Dean\'s List all semesters',
+        'GPA: 8.0/10.0',
         'Computer Science Club President',
-        'Internship at Google'
+        'Internship at Appsbee'
       ],
       type: 'education'
     }
@@ -128,10 +127,12 @@ const Experience = () => {
                               </div>
                             </div>
                           </div>
-                          <Button variant="outline" size="sm" className="text-white border-white/20 hover:bg-white/10">
-                            <ExternalLink size={16} className="mr-2" />
-                            View Company
-                          </Button>
+                          <a href="https://www.infosys.com/" target="_blank" rel="noopener noreferrer">
+                            <Button variant="outline" size="sm" className="text-white border-white/20 hover:bg-white/10">
+                              <ExternalLink size={16} className="mr-2" />
+                              View Company
+                            </Button>
+                          </a>
                         </div>
                       </CardHeader>
                       <CardContent className="space-y-6">
@@ -253,8 +254,8 @@ const Experience = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
               { icon: Users, value: '50+', label: 'Team Members Led' },
-              { icon: TrendingUp, value: '15+', label: 'Projects Delivered' },
-              { icon: Award, value: '8+', label: 'Awards Won' },
+              { icon: TrendingUp, value: '4+', label: 'Multi-billion Dollar Projects Delivered' },
+              { icon: Award, value: '8+', label: 'Best Performer' },
               { icon: Star, value: '100%', label: 'Client Satisfaction' }
             ].map((stat, index) => (
               <motion.div

@@ -3,11 +3,21 @@ import { Link } from 'react-scroll'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Code } from 'lucide-react'
 import { Button } from './ui/button'
+import resumeFile from '../assets/resume/DeeptadeepRoy_resume.pdf'
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [scrollProgress, setScrollProgress] = useState(0)
+
+  const handleDownloadCV = () => {
+    const link = document.createElement('a')
+    link.href = resumeFile
+    link.download = 'DeeptadeepRoy_resume.pdf'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,14 +69,9 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item, index) => (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-              >
+            {navItems.map((item) => (
                 <Link
+                  key={item.name}
                   to={item.to}
                   smooth={true}
                   duration={800}
@@ -75,9 +80,8 @@ const Navigation = () => {
                   {item.name}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 transition-all duration-300 group-hover:w-full"></span>
                 </Link>
-              </motion.div>
             ))}
-            <Button variant="gradient" size="sm">
+            <Button variant="gradient" size="sm" onClick={handleDownloadCV}>
               Download CV
             </Button>
           </div>
@@ -106,14 +110,9 @@ const Navigation = () => {
               className="md:hidden mt-4 glass-effect rounded-lg overflow-hidden"
             >
               <div className="py-4 space-y-2">
-                {navItems.map((item, index) => (
-                  <motion.div
-                    key={item.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
+                {navItems.map((item) => (
                     <Link
+                      key={item.name}
                       to={item.to}
                       smooth={true}
                       duration={800}
@@ -122,10 +121,9 @@ const Navigation = () => {
                     >
                       {item.name}
                     </Link>
-                  </motion.div>
                 ))}
                 <div className="px-4 pt-2">
-                  <Button variant="gradient" size="sm" className="w-full">
+                  <Button variant="gradient" size="sm" className="w-full" onClick={handleDownloadCV}>
                     Download CV
                   </Button>
                 </div>

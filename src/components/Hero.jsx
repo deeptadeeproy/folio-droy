@@ -4,21 +4,28 @@ import { Link } from 'react-scroll'
 import { TypeAnimation } from 'react-type-animation'
 import { Button } from './ui/button'
 import { Github, Linkedin, Mail, Download, MousePointer2 } from 'lucide-react'
+import resumeFile from '../assets/resume/DeeptadeepRoy_resume.pdf'
 
 const Hero = () => {
 
-
+  const handleDownloadCV = () => {
+    const link = document.createElement('a')
+    link.href = resumeFile
+    link.download = 'DeeptadeepRoy_resume.pdf'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/deeptadeep', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://linkedin.com/in/deeptadeep', label: 'LinkedIn' },
-    { icon: Mail, href: 'mailto:deeptadeep@example.com', label: 'Email' }
+    { icon: Github, href: 'https://github.com/deeptadeeproy', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://in.linkedin.com/in/deeptadeeproy', label: 'LinkedIn' },
+    { icon: Mail, href: 'mailto:deeptadeeproy@yahoo.in', label: 'Email' }
   ]
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Background gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/50 via-purple-900/30 to-slate-900/50"></div>
+
       
 
 
@@ -98,7 +105,7 @@ const Hero = () => {
                   View My Work
                 </Button>
               </Link>
-              <Button variant="glass" size="lg" className="text-lg px-8 py-3">
+              <Button variant="glass" size="lg" className="text-lg px-8 py-3" onClick={handleDownloadCV}>
                 <Download className="w-5 h-5 mr-2" />
                 Download CV
               </Button>
