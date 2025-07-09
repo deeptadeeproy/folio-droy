@@ -2,6 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { useIntersectionObserver } from '../utils/useIntersectionObserver'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
+import { SectionHeader, GlassCard, AnimatedContainer } from './shared'
 import { 
   Code, 
   Database, 
@@ -121,31 +122,26 @@ const Skills = () => {
   return (
     <section id="skills" className="py-20 relative">
       <div className="container mx-auto px-6">
-        <motion.div
+        <SectionHeader
           ref={ref}
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            My <span className="gradient-text">Skills</span>
-          </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            A comprehensive overview of my technical expertise and proficiency levels across various technologies and domains.
-          </p>
-        </motion.div>
+          title="My"
+          gradientText="Skills"
+          subtitle="A comprehensive overview of my technical expertise and proficiency levels across various technologies and domains."
+        />
 
         {/* Skill Categories Grid */}
         <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-20">
           {skillCategories.map((category, categoryIndex) => (
-            <motion.div
+            <AnimatedContainer
               key={category.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
+              delay={categoryIndex * 0.1}
+              inView={inView}
             >
-              <Card className="bg-white/5 backdrop-blur-sm border-white/10 h-full hover:border-white/20 transition-all duration-300">
+              <GlassCard
+                title={category.title}
+                icon={category.icon}
+                className="h-full"
+              >
                 <CardHeader>
                   <CardTitle className="text-xl text-white flex items-center gap-3">
                     <category.icon size={24} className={`text-gradient-to-r ${category.color}`} />
@@ -166,8 +162,8 @@ const Skills = () => {
                     </motion.div>
                   ))}
                 </CardContent>
-              </Card>
-            </motion.div>
+              </GlassCard>
+            </AnimatedContainer>
           ))}
         </div>
 

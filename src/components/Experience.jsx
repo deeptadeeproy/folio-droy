@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useIntersectionObserver } from '../utils/useIntersectionObserver'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
+import { SectionHeader, GlassCard, AnimatedContainer } from './shared'
 import { Button } from './ui/button'
 import { 
   Briefcase, 
@@ -81,20 +82,12 @@ const Experience = () => {
   return (
     <section id="experience" className="py-20 relative">
       <div className="container mx-auto px-6">
-        <motion.div
+        <SectionHeader
           ref={ref}
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            My <span className="gradient-text">Experience</span>
-          </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            A journey through my professional experience, education, and continuous learning in the world of technology.
-          </p>
-        </motion.div>
+          title="My"
+          gradientText="Experience"
+          subtitle="A journey through my professional experience, education, and continuous learning in the world of technology."
+        />
 
         {/* Work Experience */}
         <div className="mb-20">

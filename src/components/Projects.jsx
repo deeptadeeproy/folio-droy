@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useIntersectionObserver } from '../utils/useIntersectionObserver'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
+import { SectionHeader, GlassCard, AnimatedContainer } from './shared'
 import { Button } from './ui/button'
 import { 
   ExternalLink, 
@@ -102,27 +103,17 @@ const Projects = () => {
   return (
     <section id="projects" className="py-20 relative">
       <div className="container mx-auto px-6">
-        <motion.div
+        <SectionHeader
           ref={ref}
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Featured <span className="gradient-text">Projects</span>
-          </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            A showcase of my recent work, demonstrating my skills in full-stack development, 
-            mobile applications, and UI/UX design.
-          </p>
-        </motion.div>
+          title="Featured"
+          gradientText="Projects"
+          subtitle="A showcase of my recent work, demonstrating my skills in full-stack development, mobile applications, and UI/UX design."
+        />
 
         {/* Category Filter */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
+        <AnimatedContainer
+          delay={0.2}
+          inView={inView}
           className="flex flex-wrap justify-center gap-4 mb-12"
         >
           {categories.map((category, index) => (
@@ -137,7 +128,7 @@ const Projects = () => {
               {category.name}
             </Button>
           ))}
-        </motion.div>
+        </AnimatedContainer>
 
 
 

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { useIntersectionObserver } from '../utils/useIntersectionObserver'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
 import { Button } from './ui/button'
+import { SectionHeader, GlassCard, AnimatedContainer, ContactItem } from './shared'
 import { 
   Mail, 
   Phone, 
@@ -177,124 +178,78 @@ const Contact = () => {
   return (
     <section id="contact" className="py-20 relative">
       <div className="container mx-auto px-6">
-        <motion.div
+        <SectionHeader
           ref={ref}
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16 mt-8 md:mt-0"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Get In <span className="gradient-text">Touch</span>
-          </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Ready to start your next project? Let's discuss how I can help bring your ideas to life.
-          </p>
-        </motion.div>
+          title="Get In"
+          gradientText="Touch"
+          subtitle="Ready to start your next project? Let's discuss how I can help bring your ideas to life."
+          className="mt-8 md:mt-0"
+        />
 
-        <div className="grid lg:grid-cols-2 gap-3 justify-items-center lg:justify-items-start">
+        <div className="grid lg:grid-cols-2 gap-8 justify-items-center lg:justify-items-start">
           {/* Calendar and Clock */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-4"
+          <AnimatedContainer
+            direction="left"
+            delay={0.2}
+            inView={inView}
+            className="space-y-4 w-full"
           >
-            <Card className="glass-effect border-white/10 hover:border-white/20 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/10 group bg-transparent">
-              <CardHeader className="pb-6 bg-transparent">
-                <CardTitle className="text-2xl text-white flex items-center gap-3 group-hover:text-purple-300 transition-colors duration-300">
-                  Calendar
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="bg-transparent">
-                <CalendarComponent />
-              </CardContent>
-            </Card>
+            <GlassCard
+              title="Calendar"
+              fullWidth
+              inView={inView}
+            >
+              <CalendarComponent />
+            </GlassCard>
             <TimeZoneClocks />
-          </motion.div>
+          </AnimatedContainer>
 
           {/* Contact Information */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
+          <AnimatedContainer
+            direction="right"
+            delay={0.4}
+            inView={inView}
             className="space-y-4"
           >
-            <Card className="glass-effect border-white/10 hover:border-white/20 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/10 group bg-transparent">
-              <CardHeader className="pb-6 bg-transparent">
-                <CardTitle className="text-2xl text-white flex items-center gap-3 group-hover:text-purple-300 transition-colors duration-300">
-                  Let's Connect
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6 bg-transparent">
+            <GlassCard
+              title="Let's Connect"
+              inView={inView}
+            >
+              <div className="space-y-6">
                 <p className="text-gray-300 leading-relaxed">
                   I'm always open to discussing new opportunities, interesting projects, 
                   or just having a chat about technology and innovation.
                 </p>
                 
                 <div className="space-y-4">
-                  {/* Email */}
-                  <motion.div
-                    key="email"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={inView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.4 }}
-                    className="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-all duration-300 group/item"
-                  >
-                    <div className="p-3 rounded-lg glass-effect text-purple-400 group-hover/item:scale-110 transition-transform duration-300">
-                      <Mail size={20} />
-                    </div>
-                    <div>
-                      <h4 className="text-white font-medium">Email</h4>
-                      <a 
-                        href={`mailto:${contactInfo.email}`} 
-                        className="text-gray-400 hover:text-purple-300 transition-colors duration-300"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {contactInfo.email}
-                      </a>
-                    </div>
-                  </motion.div>
-
-                  {/* Phone */}
-                  <motion.div
-                    key="phone"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={inView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.5 }}
-                    className="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-all duration-300 group/item"
-                  >
-                    <div className="p-3 rounded-lg glass-effect text-green-400 group-hover/item:scale-110 transition-transform duration-300">
-                      <Phone size={20} />
-                    </div>
-                    <div>
-                      <h4 className="text-white font-medium">Phone</h4>
-                      <a 
-                        href={`tel:${contactInfo.phone.replace(/\s/g, '')}`} 
-                        className="text-gray-400 hover:text-purple-300 transition-colors duration-300"
-                      >
-                        {contactInfo.phone}
-                      </a>
-                    </div>
-                  </motion.div>
-
-                  {/* Location */}
-                  <motion.div
-                    key="location"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={inView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.6 }}
-                    className="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-all duration-300 group/item"
-                  >
-                    <div className="p-3 rounded-lg glass-effect text-purple-400 group-hover/item:scale-110 transition-transform duration-300">
-                      <MapPin size={20} />
-                    </div>
-                    <div>
-                      <h4 className="text-white font-medium">Location</h4>
-                      <p className="text-gray-400">{contactInfo.location}</p>
-                    </div>
-                  </motion.div>
+                  <ContactItem
+                    icon={Mail}
+                    title="Email"
+                    value={contactInfo.email}
+                    href={`mailto:${contactInfo.email}`}
+                    iconColor="text-purple-400"
+                    delay={0.4}
+                    inView={inView}
+                  />
+                  
+                  <ContactItem
+                    icon={Phone}
+                    title="Phone"
+                    value={contactInfo.phone}
+                    href={`tel:${contactInfo.phone.replace(/\s/g, '')}`}
+                    iconColor="text-green-400"
+                    delay={0.5}
+                    inView={inView}
+                  />
+                  
+                  <ContactItem
+                    icon={MapPin}
+                    title="Location"
+                    value={contactInfo.location}
+                    iconColor="text-purple-400"
+                    delay={0.6}
+                    inView={inView}
+                  />
                 </div>
 
                 {/* Social Links */}
@@ -322,9 +277,9 @@ const Contact = () => {
                     ))}
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-          </motion.div>
+              </div>
+            </GlassCard>
+          </AnimatedContainer>
         </div>
 
 

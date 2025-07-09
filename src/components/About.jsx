@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { useIntersectionObserver } from '../utils/useIntersectionObserver'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
 import { User, Code, Palette, Target, Award, Heart } from 'lucide-react'
+import { SectionHeader, GlassCard, AnimatedContainer } from './shared'
 
 const About = () => {
   const [ref, inView] = useIntersectionObserver()
@@ -22,27 +23,19 @@ const About = () => {
   return (
     <section id="about" className="py-20 relative">
       <div className="container mx-auto px-6">
-        <motion.div
+        <SectionHeader
           ref={ref}
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            About <span className="gradient-text">Me</span>
-          </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Passionate full-stack developer with a love for creating beautiful, functional, and user-centric digital experiences.
-          </p>
-        </motion.div>
+          title="About"
+          gradientText="Me"
+          subtitle="Passionate full-stack developer with a love for creating beautiful, functional, and user-centric digital experiences."
+        />
 
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
           {/* Left side - Stats */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
+          <AnimatedContainer
+            direction="left"
+            delay={0.2}
+            inView={inView}
             className="space-y-8"
           >
             {/* Stats */}
@@ -63,13 +56,13 @@ const About = () => {
                 </motion.div>
               ))}
             </div>
-          </motion.div>
+          </AnimatedContainer>
 
           {/* Right side - Content */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
+          <AnimatedContainer
+            direction="right"
+            delay={0.4}
+            inView={inView}
             className="space-y-6"
           >
             <Card className="bg-white/5 backdrop-blur-sm border-white/10">
@@ -115,14 +108,13 @@ const About = () => {
                 </div>
               </CardContent>
             </Card>
-          </motion.div>
+          </AnimatedContainer>
         </div>
 
         {/* Values section */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
+        <AnimatedContainer
+          delay={0.6}
+          inView={inView}
           className="text-center"
         >
           <h3 className="text-3xl font-bold text-white mb-12">
@@ -155,7 +147,7 @@ const About = () => {
               </motion.div>
             ))}
           </div>
-        </motion.div>
+        </AnimatedContainer>
       </div>
     </section>
   )
