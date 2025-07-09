@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
@@ -15,10 +15,33 @@ import {
 } from 'lucide-react'
 
 const Experience = () => {
+  const [selectedCategory, setSelectedCategory] = useState('all')
+  const [isScrolling, setIsScrolling] = useState(false)
+  const scrollTimeoutRef = useRef(null)
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
   })
+
+  // Handle scroll detection for client cards
+  const handleScroll = () => {
+    setIsScrolling(true)
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current)
+    }
+    scrollTimeoutRef.current = setTimeout(() => {
+      setIsScrolling(false)
+    }, 150) // Wait 150ms after scroll stops to re-enable hover
+  }
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current)
+      }
+    }
+  }, [])
 
   const experiences = [
     {
@@ -194,27 +217,67 @@ const Experience = () => {
             </h3>
             <p className="text-gray-400">Trusted by leading global brands</p>
           </div>
-          <div className="flex justify-center items-center gap-8 md:gap-12">
-            {[
-              { name: 'Tiffany & Co.', type: 'Luxury Retail' },
-              { name: 'GAP', type: 'Fashion Retail' },
-              { name: 'CMA-CGM', type: 'Shipping & Logistics' }
-            ].map((client, index) => (
-              <motion.div
-                key={client.name}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={inView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.6, delay: 1.0 + index * 0.2 }}
-                className="text-center"
-              >
-                <Card className="glass-effect border-white/10 hover:border-white/20 transition-all duration-300 p-6 min-w-[200px]">
-                  <CardContent className="p-0">
-                    <div className="text-2xl font-bold text-white mb-2">{client.name}</div>
-                    <div className="text-sm text-gray-400">{client.type}</div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+          <div className="relative">
+            {/* Desktop: Centered, non-scrollable */}
+            <div className="hidden md:flex gap-8 md:gap-12 justify-center">
+              {[
+                { name: 'Tiffany & Co.', type: 'Luxury Retail' },
+                { name: 'GAP', type: 'Fashion Retail' },
+                { name: 'CMA-CGM', type: 'Shipping & Logistics' }
+              ].map((client, index) => (
+                <motion.div
+                  key={client.name}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={inView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.6, delay: 1.0 + index * 0.2 }}
+                  className="text-center"
+                >
+                  <Card className="glass-effect border-white/10 hover:border-white/20 transition-all duration-300 p-6 min-w-[200px] w-[200px] h-40 flex flex-col justify-center">
+                    <CardContent className="p-0 flex flex-col justify-center h-full">
+                      <div className="text-2xl font-bold text-white mb-2">{client.name}</div>
+                      <div className="text-sm text-gray-400">{client.type}</div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Mobile: Horizontal scrollable */}
+            <div className="md:hidden flex gap-8 md:gap-12 overflow-x-auto scrollbar-hide pb-4 pl-4" onScroll={handleScroll}>
+              {[
+                { name: 'Tiffany & Co.', type: 'Luxury Retail' },
+                { name: 'GAP', type: 'Fashion Retail' },
+                { name: 'CMA-CGM', type: 'Shipping & Logistics' }
+              ].map((client, index, arr) => (
+                <motion.div
+                  key={client.name}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={inView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.6, delay: 1.0 + index * 0.2 }}
+                  className={`text-center flex-shrink-0${index === arr.length - 1 ? ' pr-4' : ''}`}
+                >
+                  <Card className={`glass-effect border-white/10 transition-all duration-300 p-6 min-w-[200px] w-[200px] h-40 flex flex-col justify-center ${
+                    !isScrolling ? 'hover:border-white/20' : ''
+                  }`}
+                        onMouseEnter={() => !isScrolling && setIsScrolling(true)}
+                        onMouseLeave={() => !isScrolling && setIsScrolling(false)}>
+                    <CardContent className="p-0 flex flex-col justify-center h-full">
+                      <div className="text-2xl font-bold text-white mb-2">{client.name}</div>
+                      <div className="text-sm text-gray-400">{client.type}</div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+            
+            {/* Scroll indicator for mobile */}
+            <div className="flex justify-center mt-4 md:hidden">
+              <div className="flex gap-2">
+                <div className="w-2 h-2 bg-white/30 rounded-full"></div>
+                <div className="w-2 h-2 bg-white/30 rounded-full"></div>
+                <div className="w-2 h-2 bg-white/30 rounded-full"></div>
+              </div>
+            </div>
           </div>
         </motion.div>
 

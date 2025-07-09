@@ -185,24 +185,6 @@ const Projects = () => {
                         </span>
                       )}
                     </div>
-                    <div className="flex gap-2 pt-2">
-                      {project.liveUrl && (
-                        <Button variant="glass" size="sm" asChild>
-                          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink size={14} className="mr-1" />
-                            Live
-                          </a>
-                        </Button>
-                      )}
-                      {project.githubUrl && (
-                        <Button variant="glass" size="sm" asChild>
-                          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                            <Github size={14} className="mr-1" />
-                            Code
-                          </a>
-                        </Button>
-                      )}
-                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
