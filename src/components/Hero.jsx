@@ -30,7 +30,7 @@ const Hero = () => {
 
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center max-w-4xl mx-auto">
+        <div className="text-center max-w-4xl mx-auto pt-5 md:pt-20">
           {/* Main content */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -67,13 +67,13 @@ const Hero = () => {
               <TypeAnimation
                 sequence={[
                   'Full Stack Developer',
-                  1500,
+                  2000,
                   'UI/UX Designer',
-                  1500,
+                  2000,
                   'Problem Solver',
-                  1500,
+                  2000,
                   'Creative Thinker',
-                  1500,
+                  2000,
                   ''
                 ]}
                 wrapper="span"
@@ -139,7 +139,7 @@ const Hero = () => {
               
               {/* Scroll indicator */}
               <motion.div
-                className="pt-16"
+                className="pt-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 2 }}

@@ -86,7 +86,7 @@ function CalendarComponent() {
               ${day === null 
                 ? 'text-transparent' 
                 : isToday(day)
-                ? 'bg-white/10 text-white rounded-lg border border-white/20'
+                ? 'bg-white/10 text-white rounded-lg border border-white/20 !bg-white/10'
                 : 'text-gray-300 hover:text-white hover:bg-white/5 rounded-lg'
               }
             `}
@@ -185,7 +185,7 @@ const Contact = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-16 mt-8 md:mt-0"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Get In <span className="gradient-text">Touch</span>
@@ -195,7 +195,7 @@ const Contact = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-12 justify-items-center lg:justify-items-start">
           {/* Calendar and Clock */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}

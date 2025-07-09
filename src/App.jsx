@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-scroll'
 import { motion } from 'framer-motion'
 import anime from 'animejs'
@@ -12,6 +12,8 @@ import Navigation from './components/Navigation'
 import { ChevronUp } from 'lucide-react'
 
 function App() {
+  const [showScrollToTop, setShowScrollToTop] = useState(false)
+
   useEffect(() => {
     // Initialize anime.js animations
     anime.timeline({ loop: false })
@@ -43,6 +45,12 @@ function App() {
     // Parallax effect for background elements
     const handleScroll = () => {
       const scrolled = window.pageYOffset
+      const heroSection = document.getElementById('hero')
+      const heroHeight = heroSection ? heroSection.offsetHeight : 0
+      
+      // Show scroll-to-top button only when scrolled past hero section
+      setShowScrollToTop(scrolled > heroHeight * 0.5)
+      
       const parallax = document.querySelectorAll('.parallax')
       parallax.forEach(element => {
         const speed = element.dataset.speed || 0.5
@@ -80,17 +88,19 @@ function App() {
       </main>
 
       {/* Scroll to top button */}
-      <motion.button
-        onClick={scrollToTop}
-        className="fixed bottom-8 right-8 z-50 p-3 rounded-full gradient-bg text-white shadow-lg hover:shadow-xl transition-all duration-300 glass-effect"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2 }}
-      >
-        <ChevronUp size={24} />
-      </motion.button>
+      {showScrollToTop && (
+        <motion.button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 z-50 p-3 rounded-full gradient-bg text-white shadow-lg hover:shadow-xl transition-all duration-300 border-0 focus:outline-none"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2 }}
+        >
+          <ChevronUp size={24} />
+        </motion.button>
+      )}
 
       {/* Smooth scroll links */}
       <div className="hidden">

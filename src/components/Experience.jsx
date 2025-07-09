@@ -115,7 +115,7 @@ const Experience = () => {
 
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-white to-gray-400"></div>
+            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-white to-gray-400 hidden md:block"></div>
             
             <div className="space-y-0">
               {experiences.map((exp, index) => (
@@ -127,9 +127,9 @@ const Experience = () => {
                   className="relative flex items-start"
                 >
                   {/* Timeline dot */}
-                  <div className="absolute left-6 w-4 h-4 bg-gradient-to-r from-white to-gray-400 rounded-full border-4 border-zinc-950 z-10"></div>
+                  <div className="absolute left-6 w-4 h-4 bg-gradient-to-r from-white to-gray-400 rounded-full border-4 border-zinc-950 z-10 hidden md:block"></div>
                   
-                  <div className="ml-16 flex-1">
+                  <div className="md:ml-16 flex-1">
                     <Card className="glass-effect border-white/10 hover:border-white/20 transition-all duration-300">
                       <CardHeader>
                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -175,7 +175,7 @@ const Experience = () => {
                                 transition={{ duration: 0.5, delay: 0.6 + index * 0.2 + achIndex * 0.1 }}
                                 className="flex items-start gap-3 text-gray-300"
                               >
-                                <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
+                                <div className="w-2 h-2 bg-gray-300 md:bg-white rounded-full mt-2 flex-shrink-0"></div>
                                 <span className="text-sm">{achievement}</span>
                               </motion.li>
                             ))}

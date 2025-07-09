@@ -23,6 +23,11 @@ const Navigation = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
       
+      // Close mobile menu when scrolling
+      if (isOpen) {
+        setIsOpen(false)
+      }
+      
       // Calculate scroll progress
       const scrollTop = window.scrollY
       const docHeight = document.documentElement.scrollHeight - window.innerHeight
@@ -31,7 +36,7 @@ const Navigation = () => {
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [isOpen])
 
   const navItems = [
     { name: 'Home', to: 'hero' },
@@ -44,14 +49,10 @@ const Navigation = () => {
 
   return (
           <motion.nav
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-2"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6 }}
-        style={{
-          background: `linear-gradient(to right, rgba(0, 0, 0, 0.6) ${scrollProgress}%, transparent ${scrollProgress}%)`,
-          backdropFilter: scrollProgress > 0 ? 'blur(10px)' : 'none'
-        }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-2 backdrop-blur-md ${scrollProgress > 0 ? 'md:bg-black/20' : ''}`}
       >
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between">
