@@ -142,12 +142,6 @@ const Skills = () => {
                 icon={category.icon}
                 className="h-full"
               >
-                <CardHeader>
-                  <CardTitle className="text-xl text-white flex items-center gap-3">
-                    <category.icon size={24} className={`text-gradient-to-r ${category.color}`} />
-                    {category.title}
-                  </CardTitle>
-                </CardHeader>
                 <CardContent className="space-y-3">
                   {category.skills.map((skill, skillIndex) => (
                     <motion.div
