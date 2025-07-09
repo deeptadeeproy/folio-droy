@@ -199,7 +199,7 @@ const Contact = () => {
               fullWidth
               inView={inView}
             >
-              <CalendarComponent />
+                <CalendarComponent />
             </GlassCard>
             <TimeZoneClocks />
           </AnimatedContainer>
@@ -226,7 +226,7 @@ const Contact = () => {
                     icon={Mail}
                     title="Email"
                     value={contactInfo.email}
-                    href={`mailto:${contactInfo.email}`}
+                        href={`mailto:${contactInfo.email}`} 
                     iconColor="text-purple-400"
                     delay={0.4}
                     inView={inView}
@@ -236,7 +236,7 @@ const Contact = () => {
                     icon={Phone}
                     title="Phone"
                     value={contactInfo.phone}
-                    href={`tel:${contactInfo.phone.replace(/\s/g, '')}`}
+                        href={`tel:${contactInfo.phone.replace(/\s/g, '')}`} 
                     iconColor="text-green-400"
                     delay={0.5}
                     inView={inView}

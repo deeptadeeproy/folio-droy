@@ -220,20 +220,16 @@ const Experience = () => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={inView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.6, delay: 1.0 + index * 0.2 }}
-                  className="text-center"
+                  className="text-center p-4 min-w-[250px] w-[250px] h-40 flex flex-col justify-center"
                 >
-                  <Card className="glass-effect border-white/10 hover:border-white/20 transition-all duration-300 p-6 min-w-[200px] w-[200px] h-40 flex flex-col justify-center">
-                    <CardContent className="p-0 flex flex-col justify-center h-full">
-                      <div className="text-2xl font-bold text-white mb-2">{client.name}</div>
-                      <div className="text-sm text-gray-400">{client.type}</div>
-                    </CardContent>
-                  </Card>
+                  <div className="text-2xl font-bold text-white mb-2">{client.name}</div>
+                  <div className="text-sm text-gray-400">{client.type}</div>
                 </motion.div>
               ))}
             </div>
 
             {/* Mobile: Horizontal scrollable */}
-            <div className="md:hidden flex gap-8 md:gap-12 overflow-x-auto scrollbar-hide pb-4 pl-4" onScroll={handleScroll}>
+            <div className="md:hidden flex gap-4 md:gap-12 overflow-x-auto scrollbar-hide pb-4 pl-4" onScroll={handleScroll}>
               {[
                 { name: 'Tiffany & Co.', type: 'Luxury Retail' },
                 { name: 'GAP', type: 'Fashion Retail' },
@@ -244,18 +240,10 @@ const Experience = () => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={inView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.6, delay: 1.0 + index * 0.2 }}
-                  className={`text-center flex-shrink-0${index === arr.length - 1 ? ' pr-4' : ''}`}
+                  className={`text-center flex-shrink-0 p-0 min-w-[220px] w-[220px] h-40 flex flex-col justify-center${index === arr.length - 1 ? ' pr-4' : ''}`}
                 >
-                  <Card className={`glass-effect border-white/10 transition-all duration-300 p-6 min-w-[200px] w-[200px] h-40 flex flex-col justify-center ${
-                    !isScrolling ? 'hover:border-white/20' : ''
-                  }`}
-                        onMouseEnter={() => !isScrolling && setIsScrolling(true)}
-                        onMouseLeave={() => !isScrolling && setIsScrolling(false)}>
-                    <CardContent className="p-0 flex flex-col justify-center h-full">
-                      <div className="text-2xl font-bold text-white mb-2">{client.name}</div>
-                      <div className="text-sm text-gray-400">{client.type}</div>
-                    </CardContent>
-                  </Card>
+                  <div className="text-2xl font-bold text-white mb-2">{client.name}</div>
+                  <div className="text-sm text-gray-400">{client.type}</div>
                 </motion.div>
               ))}
             </div>
