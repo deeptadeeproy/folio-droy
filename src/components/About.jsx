@@ -11,7 +11,7 @@ const About = () => {
   const stats = [
     { icon: Code, value: '50+', label: 'Projects Completed' },
     { icon: Award, value: '4+', label: 'Years Experience' },
-    { icon: Heart, value: '100%', label: 'Client Satisfaction' },
+    { icon: Heart, value: '100%', label: 'Satisfaction' },
     { icon: Target, value: '24/7', label: 'Support Available' }
   ]
 
@@ -124,7 +124,7 @@ const About = () => {
             {[
               {
                 title: 'Innovation',
-                description: 'Constantly exploring new technologies and creative solutions to solve complex problems.'
+                description: 'Exploring new technologies, pioneering creative solutions to solve complex problems.'
               },
               {
                 title: 'Quality',

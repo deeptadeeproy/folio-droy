@@ -14,6 +14,9 @@ import {
   TrendingUp,
   Star
 } from 'lucide-react'
+import tiffanyLogo from '../assets/logos/tiffany.svg'
+import gapLogo from '../assets/logos/gap.svg'
+import cmacgmLogo from '../assets/logos/cmacgm.svg'
 
 const Experience = () => {
   const [selectedCategory, setSelectedCategory] = useState('all')
@@ -211,9 +214,9 @@ const Experience = () => {
             {/* Desktop: Centered, non-scrollable */}
             <div className="hidden md:flex gap-8 md:gap-12 justify-center">
               {[
-                { name: 'Tiffany & Co.', type: 'Luxury Retail' },
-                { name: 'GAP', type: 'Fashion Retail' },
-                { name: 'CMA-CGM', type: 'Shipping & Logistics' }
+                { name: 'Tiffany & Co.', type: 'Luxury Retail', logo: tiffanyLogo },
+                { name: 'GAP', type: 'Fashion Retail', logo: gapLogo },
+                { name: 'CMA-CGM', type: 'Shipping & Logistics', logo: cmacgmLogo }
               ].map((client, index) => (
                 <motion.div
                   key={client.name}
@@ -222,7 +225,13 @@ const Experience = () => {
                   transition={{ duration: 0.6, delay: 1.0 + index * 0.2 }}
                   className="text-center p-4 min-w-[250px] w-[250px] h-40 flex flex-col justify-center"
                 >
-                      <div className="text-2xl font-bold text-white mb-2">{client.name}</div>
+                      <div className="flex justify-center mb-4">
+                        <img 
+                          src={client.logo} 
+                          alt={`${client.name} logo`} 
+                          className="h-12 w-auto object-contain filter brightness-0 invert"
+                        />
+                      </div>
                       <div className="text-sm text-gray-400">{client.type}</div>
                 </motion.div>
               ))}
@@ -231,9 +240,9 @@ const Experience = () => {
             {/* Mobile: Horizontal scrollable */}
             <div className="md:hidden flex gap-4 md:gap-12 overflow-x-auto scrollbar-hide pb-4 pl-4" onScroll={handleScroll}>
               {[
-                { name: 'Tiffany & Co.', type: 'Luxury Retail' },
-                { name: 'GAP', type: 'Fashion Retail' },
-                { name: 'CMA-CGM', type: 'Shipping & Logistics' }
+                { name: 'Tiffany & Co.', type: 'Luxury Retail', logo: tiffanyLogo },
+                { name: 'GAP', type: 'Fashion Retail', logo: gapLogo },
+                { name: 'CMA-CGM', type: 'Shipping & Logistics', logo: cmacgmLogo }
               ].map((client, index, arr) => (
                 <motion.div
                   key={client.name}
@@ -242,7 +251,13 @@ const Experience = () => {
                   transition={{ duration: 0.6, delay: 1.0 + index * 0.2 }}
                   className={`text-center flex-shrink-0 p-0 min-w-[220px] w-[220px] h-40 flex flex-col justify-center${index === arr.length - 1 ? ' pr-4' : ''}`}
                 >
-                      <div className="text-2xl font-bold text-white mb-2">{client.name}</div>
+                      <div className="flex justify-center mb-4">
+                        <img 
+                          src={client.logo} 
+                          alt={`${client.name} logo`} 
+                          className="h-10 w-auto object-contain filter brightness-0 invert"
+                        />
+                      </div>
                       <div className="text-sm text-gray-400">{client.type}</div>
                 </motion.div>
               ))}
@@ -332,9 +347,9 @@ const Experience = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
               { icon: Users, value: '50+', label: 'Team Members Led' },
-              { icon: TrendingUp, value: '4+', label: 'Multi-billion Dollar Projects' },
+              { icon: TrendingUp, value: '4+', label: 'High Value Projects' },
               { icon: Award, value: '8+', label: 'Best Performer' },
-              { icon: Star, value: '100%', label: 'Client Satisfaction' }
+              { icon: Star, value: '100%', label: 'Satisfaction' }
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
