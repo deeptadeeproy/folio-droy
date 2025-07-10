@@ -21,8 +21,8 @@ const About = () => {
   ]
 
   return (
-    <section id="about" className="py-20 relative">
-      <div className="container mx-auto px-6">
+    <section id="about" className="py-20 relative cursor-default">
+      <div className="container mx-auto px-6 cursor-default">
         <SectionHeader
           ref={ref}
           title="About"
@@ -30,16 +30,16 @@ const About = () => {
           subtitle="Passionate full-stack developer with a love for creating beautiful, functional, and user-centric digital experiences."
         />
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
+        <div className="grid lg:grid-cols-2 gap-12 items-center mb-20 cursor-default">
           {/* Left side - Stats */}
           <AnimatedContainer
             direction="left"
             delay={0.2}
             inView={inView}
-            className="space-y-8"
+            className="space-y-8 cursor-default"
           >
             {/* Stats */}
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-6 cursor-default">
               {stats.map((stat, index) => (
                 <motion.div
                   key={stat.label}
@@ -63,7 +63,7 @@ const About = () => {
             direction="right"
             delay={0.4}
             inView={inView}
-            className="space-y-6"
+            className="space-y-6 cursor-default"
           >
             <Card className="bg-white/5 backdrop-blur-sm border-white/10">
               <CardHeader>
@@ -115,12 +115,12 @@ const About = () => {
         <AnimatedContainer
           delay={0.6}
           inView={inView}
-          className="text-center"
+          className="text-center cursor-default"
         >
-          <h3 className="text-3xl font-bold text-white mb-12">
+          <h3 className="text-3xl font-bold text-white mb-12 cursor-default">
             Core <span className="gradient-text">Values</span>
           </h3>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 cursor-default">
             {[
               {
                 title: 'Innovation',

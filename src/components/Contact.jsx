@@ -176,8 +176,8 @@ const Contact = () => {
   ]
 
   return (
-    <section id="contact" className="py-20 relative">
-      <div className="container mx-auto px-6">
+    <section id="contact" className="py-20 relative cursor-default">
+      <div className="container mx-auto px-6 cursor-default">
         <SectionHeader
           ref={ref}
           title="Get In"
@@ -186,7 +186,7 @@ const Contact = () => {
           className="mt-8 md:mt-0"
         />
 
-        <div className="grid lg:grid-cols-2 gap-8 justify-items-center lg:justify-items-start">
+        <div className="grid lg:grid-cols-2 gap-8 justify-items-center lg:justify-items-start cursor-default">
           {/* Calendar and Clock */}
           <AnimatedContainer
             direction="left"
@@ -217,8 +217,7 @@ const Contact = () => {
             >
               <div className="space-y-6">
                 <p className="text-gray-300 leading-relaxed">
-                  I'm always open to discussing new opportunities, interesting projects, 
-                  or just having a chat about technology and innovation.
+                  Open to new opportunities, interesting projects, or dive into a conversation about technology and innovation.
                 </p>
                 
                 <div className="space-y-4">
@@ -226,8 +225,9 @@ const Contact = () => {
                     icon={Mail}
                     title="Email"
                     value={contactInfo.email}
-                        href={`mailto:${contactInfo.email}`} 
-                    iconColor="text-purple-400"
+                    href={`mailto:${contactInfo.email}`} 
+                    iconColor="text-blue-400"
+                    hoverColor="text-blue-300"
                     delay={0.4}
                     inView={inView}
                   />
@@ -236,8 +236,9 @@ const Contact = () => {
                     icon={Phone}
                     title="Phone"
                     value={contactInfo.phone}
-                        href={`tel:${contactInfo.phone.replace(/\s/g, '')}`} 
+                    href={`tel:${contactInfo.phone.replace(/\s/g, '')}`} 
                     iconColor="text-green-400"
+                    hoverColor="text-green-300"
                     delay={0.5}
                     inView={inView}
                   />
@@ -246,6 +247,7 @@ const Contact = () => {
                     icon={MapPin}
                     title="Location"
                     value={contactInfo.location}
+                    href={`https://maps.google.com/?q=${encodeURIComponent(contactInfo.location)}`}
                     iconColor="text-purple-400"
                     delay={0.6}
                     inView={inView}
@@ -265,7 +267,7 @@ const Contact = () => {
                         href={social.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`p-3 rounded-full glass-effect text-white transition-all duration-300 hover:scale-110 ${social.color}`}
+                        className={`p-3 rounded-full glass-effect text-white transition-all duration-300 hover:scale-110 ${social.color} focus:outline-none`}
                         whileHover={{ y: -5 }}
                         whileTap={{ scale: 0.95 }}
                         initial={{ opacity: 0, y: 20 }}

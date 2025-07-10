@@ -83,8 +83,8 @@ const Experience = () => {
 
 
   return (
-    <section id="experience" className="py-20 relative">
-      <div className="container mx-auto px-6">
+    <section id="experience" className="py-20 relative cursor-default">
+      <div className="container mx-auto px-6 cursor-default">
         <SectionHeader
           ref={ref}
           title="My"
@@ -93,20 +93,20 @@ const Experience = () => {
         />
 
         {/* Work Experience */}
-        <div className="mb-20">
+        <div className="mb-20 cursor-default">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-center mb-12"
+            className="text-center mb-12 cursor-default"
           >
-            <h3 className="text-3xl font-bold text-white mb-4 flex items-center justify-center gap-3">
+            <h3 className="text-3xl font-bold text-white mb-4 flex items-center justify-center gap-3 cursor-default">
               <Briefcase className="text-white" size={32} />
               Work Experience
             </h3>
           </motion.div>
 
-          <div className="relative">
+          <div className="relative cursor-default">
             {/* Timeline line */}
             <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-white to-gray-400 hidden md:block"></div>
             
@@ -143,8 +143,8 @@ const Experience = () => {
                               </div>
                             </div>
                           </div>
-                          <a href="https://www.infosys.com/" target="_blank" rel="noopener noreferrer">
-                            <Button variant="outline" size="sm" className="text-white border-white/20 hover:bg-white/10">
+                          <a href="https://www.infosys.com/" target="_blank" rel="noopener noreferrer" className="focus:outline-none">
+                            <Button variant="outline" size="sm" className="text-white border-white/20 hover:bg-white/10 focus:outline-none">
                               <ExternalLink size={16} className="mr-2" />
                               View Company
                             </Button>

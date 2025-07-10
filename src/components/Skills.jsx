@@ -120,8 +120,8 @@ const Skills = () => {
   ]
 
   return (
-    <section id="skills" className="py-20 relative">
-      <div className="container mx-auto px-6">
+    <section id="skills" className="py-20 relative cursor-default">
+      <div className="container mx-auto px-6 cursor-default">
         <SectionHeader
           ref={ref}
           title="My"
@@ -130,7 +130,7 @@ const Skills = () => {
         />
 
         {/* Skill Categories Grid */}
-        <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-20">
+        <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-20 cursor-default">
           {skillCategories.map((category, categoryIndex) => (
             <AnimatedContainer
               key={category.title}
@@ -166,12 +166,12 @@ const Skills = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-center"
+          className="text-center cursor-default"
         >
-          <h3 className="text-3xl font-bold text-white mb-12">
+          <h3 className="text-3xl font-bold text-white mb-12 cursor-default">
             Technology <span className="gradient-text">Stack</span>
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 cursor-default">
             {technologies.map((tech, index) => (
               <motion.div
                 key={tech.name}

@@ -29,14 +29,14 @@ const Hero = () => {
       
 
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center max-w-4xl mx-auto pt-5 md:pt-20">
+      <div className="container mx-auto px-6 relative z-10 cursor-default">
+        <div className="text-center max-w-4xl mx-auto pt-5 md:pt-20 cursor-default">
           {/* Main content */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="space-y-8"
+            className="space-y-8 cursor-default"
           >
             {/* Greeting */}
             <motion.p
@@ -95,17 +95,17 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <motion.div
-              className="hero-cta flex flex-col sm:flex-row gap-4 justify-center items-center pt-8"
+              className="hero-cta flex flex-col sm:flex-row gap-4 justify-center items-center pt-8 cursor-default"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1 }}
             >
-              <Link to="projects" smooth={true} duration={800} className="w-[70%] sm:w-auto">
-                <Button variant="gradient" size="lg" className="text-lg px-8 py-3 w-full sm:w-auto">
+              <Link to="projects" smooth={true} duration={800} className="w-[70%] sm:w-auto focus:outline-none">
+                <Button variant="gradient" size="lg" className="text-lg px-8 py-3 w-full sm:w-auto focus:outline-none">
                   View My Work
                 </Button>
               </Link>
-              <Button variant="glass" size="lg" className="text-lg px-8 py-3 w-[70%] sm:w-auto" onClick={handleDownloadCV}>
+              <Button variant="glass" size="lg" className="text-lg px-8 py-3 w-[70%] sm:w-auto focus:outline-none" onClick={handleDownloadCV}>
                 <Download className="w-5 h-5 mr-2" />
                 Download CV
               </Button>
@@ -113,12 +113,12 @@ const Hero = () => {
 
             {/* Social Links */}
             <motion.div
-              className="flex flex-col items-center space-y-6 pt-8"
+              className="flex flex-col items-center space-y-6 pt-8 cursor-default"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.2 }}
             >
-              <div className="flex justify-center items-center space-x-6">
+              <div className="flex justify-center items-center space-x-6 cursor-default">
                 {socialLinks.map((social, index) => (
                   <motion.a
                     key={social.label}
@@ -144,9 +144,9 @@ const Hero = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 2 }}
               >
-                <Link to="about" smooth={true} duration={800}>
+                <Link to="about" smooth={true} duration={800} className="focus:outline-none">
                   <motion.div
-                    className="flex flex-col items-center text-white/60 hover:text-white cursor-pointer"
+                    className="flex flex-col items-center text-white/60 hover:text-white cursor-pointer focus:outline-none"
                     animate={{ y: [0, 10, 0] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >

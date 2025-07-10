@@ -57,19 +57,22 @@ const Navigation = () => {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <motion.div
-            className="flex items-center space-x-2"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
+          <div className="flex items-center space-x-2 cursor-default">
             <div>
               <Code className="w-6 h-6 text-white" />
             </div>
-            <span className="text-xl font-bold text-white">Deeptadeep Roy</span>
-          </motion.div>
+            <Link
+              to="hero"
+              smooth={true}
+              duration={800}
+              className="text-xl font-bold text-white focus:outline-none cursor-pointer"
+            >
+              Deeptadeep Roy
+            </Link>
+          </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-8 cursor-default">
             {navItems.map((item) => (
                 <Link
                   key={item.name}
@@ -82,18 +85,18 @@ const Navigation = () => {
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 transition-all duration-300 group-hover:w-full"></span>
                 </Link>
             ))}
-            <Button variant="gradient" size="sm" onClick={handleDownloadCV}>
+            <Button variant="gradient" size="sm" onClick={handleDownloadCV} className="focus:outline-none">
               Download CV
             </Button>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden cursor-default">
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
-              className="text-white hover:bg-white/10"
+              className="text-white hover:bg-white/10 focus:outline-none"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </Button>
@@ -110,7 +113,7 @@ const Navigation = () => {
               transition={{ duration: 0.3 }}
               className="md:hidden mt-4 glass-effect rounded-lg overflow-hidden"
             >
-              <div className="py-4 space-y-2">
+              <div className="py-4 space-y-2 cursor-default">
                 {navItems.map((item) => (
                     <Link
                       key={item.name}
@@ -124,7 +127,7 @@ const Navigation = () => {
                     </Link>
                 ))}
                 <div className="px-4 pt-2">
-                  <Button variant="gradient" size="sm" className="w-full" onClick={handleDownloadCV}>
+                  <Button variant="gradient" size="sm" className="w-full focus:outline-none" onClick={handleDownloadCV}>
                     Download CV
                   </Button>
                 </div>

@@ -19,13 +19,13 @@ const SectionHeader = ({
       initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, delay }}
-      className={`text-center mb-16 ${className}`}
+      className={`text-center mb-16 cursor-default ${className}`}
     >
-      <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+      <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 cursor-default">
         {title} {gradientText && <span className="gradient-text">{gradientText}</span>}
       </h2>
       {subtitle && (
-        <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+        <p className="text-xl text-gray-400 max-w-3xl mx-auto cursor-default">
           {subtitle}
         </p>
       )}

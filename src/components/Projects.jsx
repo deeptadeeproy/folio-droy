@@ -101,8 +101,8 @@ const Projects = () => {
     : projects.filter(project => project.category === selectedCategory)
 
   return (
-    <section id="projects" className="py-20 relative">
-      <div className="container mx-auto px-6">
+    <section id="projects" className="py-20 relative cursor-default">
+      <div className="container mx-auto px-6 cursor-default">
         <SectionHeader
           ref={ref}
           title="Featured"
@@ -122,7 +122,7 @@ const Projects = () => {
               variant={selectedCategory === category.id ? "gradient" : "outline"}
               size="sm"
               onClick={() => setSelectedCategory(category.id)}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 focus:outline-none"
             >
               <category.icon size={16} />
               {category.name}
@@ -140,7 +140,7 @@ const Projects = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -30 }}
             transition={{ duration: 0.5 }}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 cursor-default"
           >
             {filteredProjects.map((project, index) => (
               <motion.div
