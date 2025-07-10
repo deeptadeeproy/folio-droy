@@ -124,7 +124,7 @@ const Skills = () => {
       <div className="container mx-auto px-6 cursor-default">
         <SectionHeader
           ref={ref}
-          title="My"
+          title=""
           gradientText="Skills"
           subtitle="A comprehensive overview of my technical expertise and proficiency levels across various technologies and domains."
         />

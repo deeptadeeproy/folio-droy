@@ -1,24 +1,26 @@
 # Deeptadeep Roy - Portfolio Website
 
-A stunning, modern portfolio website built with React, featuring liquid glass design, smooth animations, and beautiful UI/UX. This portfolio showcases Deeptadeep Roy's skills as a full-stack software developer.
+A stunning, modern portfolio website built with React, featuring liquid glass design, smooth animations, and beautiful UI/UX. This portfolio showcases Deeptadeep Roy's skills as a full-stack software developer with a focus on clean, minimalist design and exceptional user experience.
 
 ## ✨ Features
 
 - **Liquid Glass Design**: Beautiful glass morphism effects throughout the website
-- **Smooth Animations**: Powered by Framer Motion and Anime.js for engaging user experience
+- **Smooth Animations**: Powered by Framer Motion for engaging user experience
 - **Responsive Design**: Fully responsive across all devices and screen sizes
 - **Modern UI Components**: Built with shadcn/ui components for consistent design
 - **Typewriter Effect**: Dynamic text animations in the hero section
-- **Interactive Elements**: Hover effects, parallax scrolling, and smooth transitions
-- **Contact Form**: Functional contact form with validation and submission feedback
+- **Interactive Elements**: Enhanced hover effects, smooth transitions, and clickable contact items
+- **Clean Navigation**: Minimalist navigation design with smooth scrolling
+- **Contact Integration**: Fully clickable contact items with proper hover effects
 - **Dark Theme**: Elegant dark theme with gradient accents
 - **Performance Optimized**: Fast loading times and smooth scrolling
+- **Accessibility**: Proper focus management and keyboard navigation
 
 ## 🛠️ Technologies Used
 
 - **Frontend**: React 18, Vite
 - **Styling**: Tailwind CSS, CSS Custom Properties
-- **Animations**: Framer Motion, Anime.js
+- **Animations**: Framer Motion
 - **UI Components**: shadcn/ui, Lucide React Icons
 - **Typewriter**: React Type Animation
 - **Scroll Effects**: React Intersection Observer, React Scroll
@@ -69,8 +71,13 @@ npm run preview
 folio-droy/
 ├── public/
 ├── src/
+│   ├── assets/
+│   │   ├── icons/        # Technology icons
+│   │   ├── logos/        # Company logos
+│   │   └── resume/       # Resume files
 │   ├── components/
 │   │   ├── ui/           # shadcn/ui components
+│   │   ├── shared/       # Shared components
 │   │   ├── Hero.jsx      # Hero section
 │   │   ├── About.jsx     # About section
 │   │   ├── Skills.jsx    # Skills section
@@ -80,6 +87,8 @@ folio-droy/
 │   │   └── Navigation.jsx # Navigation component
 │   ├── lib/
 │   │   └── utils.js      # Utility functions
+│   ├── utils/
+│   │   └── useIntersectionObserver.js # Custom hooks
 │   ├── App.jsx           # Main App component
 │   ├── main.jsx          # React entry point
 │   └── index.css         # Global styles
@@ -99,16 +108,23 @@ folio-droy/
 
 ### Animations
 - Scroll-triggered animations
-- Hover effects and micro-interactions
-- Parallax scrolling
+- Enhanced hover effects and micro-interactions
+- Smooth color transitions
 - Typewriter text effects
 - Floating elements
 
 ### Color Scheme
-- Dark theme with purple and blue gradients
+- Dark theme with purple, blue, and green gradients
 - Consistent color palette throughout
 - Accessible contrast ratios
 - Smooth color transitions
+
+### Navigation Design
+- Clean, minimalist navigation
+- Centered desktop layout
+- Right-aligned mobile menu
+- Smooth scrolling between sections
+- No visual artifacts on interaction
 
 ## 📱 Responsive Design
 
@@ -142,47 +158,67 @@ Update the content in each component file:
 ### Animations
 Customize animations by modifying:
 - Framer Motion variants in components
-- Anime.js configurations in `App.jsx`
 - CSS animations in `index.css`
+- Intersection observer configurations
 
 ## 📄 Sections
 
 ### Hero Section
-- Animated introduction
-- Typewriter effect
+- Animated introduction with typewriter effect
 - Call-to-action buttons
-- Social media links
-- Scroll indicator
+- Social media links with hover effects
+- Smooth scroll indicator
 
 ### About Section
 - Personal introduction
 - Statistics and achievements
-- Skills overview
-- Core values
+- Skills overview with animated progress
+- Core values presentation
 
 ### Skills Section
-- Technical skills with progress bars
-- Technology stack
-- Soft skills
-- Certifications
+- Technical skills organized by category
+- Technology stack with icons
+- Interactive skill cards
+- Comprehensive technology showcase
 
 ### Projects Section
 - Featured projects showcase
-- Project filtering by category
+- Category-based filtering
 - Interactive project cards
-- Technology tags
+- Technology tags and descriptions
 
 ### Experience Section
 - Work experience timeline
 - Education details
-- Certifications
 - Professional achievements
+- Interactive company links
 
 ### Contact Section
-- Contact form with validation
-- Contact information
-- Social media links
-- Availability status
+- Fully clickable contact items
+- Enhanced hover effects with color-coded interactions
+- Social media integration
+- Calendar and timezone display
+- Real-time clock functionality
+
+## 🎯 Key Features
+
+### Enhanced Contact Interactions
+- **Email**: Clickable with light blue hover effects
+- **Phone**: Clickable with green hover effects
+- **Location**: Clickable with purple hover effects and Google Maps integration
+- **Social Links**: Interactive with hover animations
+
+### Improved User Experience
+- **Focus Management**: Clean focus states without visual artifacts
+- **Smooth Interactions**: Enhanced hover effects and transitions
+- **Accessibility**: Proper keyboard navigation and screen reader support
+- **Performance**: Optimized animations and loading times
+
+### Navigation Enhancements
+- **Clean Design**: Minimalist navigation without logo clutter
+- **Responsive Layout**: Centered on desktop, right-aligned on mobile
+- **Smooth Scrolling**: Seamless navigation between sections
+- **Mobile Optimization**: Touch-friendly mobile menu
 
 ## 🚀 Deployment
 
@@ -199,21 +235,14 @@ Customize animations by modifying:
 ### Other Platforms
 The project can be deployed to any static hosting platform that supports React applications.
 
-## 📝 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
 ## 📞 Contact
 
-Deeptadeep Roy
-- Email: deeptadeep@example.com
-- LinkedIn: [linkedin.com/in/deeptadeep](https://linkedin.com/in/deeptadeep)
-- GitHub: [github.com/deeptadeep](https://github.com/deeptadeep)
+- **Email**: deeptadeeproy@yahoo.in
+- **Phone**: +91 90738-40430
+- **Location**: Kolkata, India
+- **GitHub**: [deeptadeeproy](https://github.com/deeptadeeproy)
+- **LinkedIn**: [deeptadeeproy](https://in.linkedin.com/in/deeptadeeproy)
 
 ---
 
-Built with ❤️ by Deeptadeep Roy 
+Built with ❤️ using React, Tailwind CSS, and Framer Motion 

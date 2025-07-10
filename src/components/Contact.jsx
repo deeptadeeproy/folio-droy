@@ -217,7 +217,7 @@ const Contact = () => {
             >
               <div className="space-y-6">
                 <p className="text-gray-300 leading-relaxed">
-                  Open to new opportunities, interesting projects, or dive into a conversation about technology and innovation.
+                  Open to new opportunities, interesting projects, or diving into a conversation about technology and innovation.
                 </p>
                 
                 <div className="space-y-4">
