@@ -55,7 +55,7 @@ const Navigation = () => {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-2 backdrop-blur-md ${scrollProgress > 0 ? 'md:bg-black/20' : ''}`}
       >
               <div className="container mx-auto px-6">
-          <div className="flex items-center justify-end">
+          <div className="flex items-center justify-between">
 
 
             {/* Desktop Navigation */}
@@ -72,22 +72,32 @@ const Navigation = () => {
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 transition-all duration-300 group-hover:w-full"></span>
                 </Link>
             ))}
-            <Button variant="gradient" size="sm" onClick={handleDownloadCV} className="focus:outline-none">
-              Download CV
-            </Button>
-          </div>
+            </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden cursor-default">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-white hover:bg-white/10 focus:outline-none"
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </Button>
-          </div>
+            {/* Mobile placeholder to push hamburger to right */}
+            <div className="md:hidden"></div>
+
+            {/* Right Side - Download CV (Desktop) and Mobile Menu Button */}
+            <div className="flex items-center space-x-4">
+              {/* Desktop Download CV */}
+              <div className="hidden md:block">
+                <Button variant="gradient" size="sm" onClick={handleDownloadCV} className="focus:outline-none">
+                  Download CV
+                </Button>
+              </div>
+
+              {/* Mobile menu button */}
+              <div className="md:hidden cursor-default">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setIsOpen(!isOpen)}
+                  className="text-white hover:bg-white/10 focus:outline-none"
+                >
+                  {isOpen ? <X size={24} /> : <Menu size={24} />}
+                </Button>
+              </div>
+            </div>
         </div>
 
         {/* Mobile Navigation */}
