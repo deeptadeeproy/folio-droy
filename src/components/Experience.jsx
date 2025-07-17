@@ -69,7 +69,7 @@ const Experience = () => {
       title: 'Bachelor of Technology, Electrical Engineering',
       institution: 'KIIT University',
       location: 'Bhubaneshwar, India',
-      period: '2017 - 2021',
+      period: '2021',
       description: 'Major in Electrical Engineering with minor in Computer Science',
       achievements: [
         'GPA: 8.0/10.0',
