@@ -66,7 +66,7 @@ const Experience = () => {
   const education = [
     {
       id: 1,
-      title: 'Bachelor of Electrical Engineering',
+      title: 'Bachelor of Technology, Electrical Engineering',
       institution: 'KIIT University',
       location: 'Bhubaneshwar, India',
       period: '2017 - 2021',
