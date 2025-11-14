@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { useIntersectionObserver } from '../utils/useIntersectionObserver'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
-import { User, Code, Palette, Target, Award, Heart } from 'lucide-react'
+import { Code, Palette, Target, Award, Heart } from 'lucide-react'
 import { SectionHeader, GlassCard, AnimatedContainer } from './shared'
 
 const About = () => {
@@ -30,7 +30,7 @@ const About = () => {
           subtitle="Passionate full-stack developer with a love for creating beautiful, functional, and user-centric digital experiences."
         />
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-20 cursor-default">
+        <div className="grid lg:grid-cols-2 gap-12 items-stretch mb-20 cursor-default">
           {/* Left side - Stats */}
           <AnimatedContainer
             direction="left"
@@ -63,36 +63,20 @@ const About = () => {
             direction="right"
             delay={0.4}
             inView={inView}
-            className="space-y-6 cursor-default"
+            className="h-full cursor-default"
           >
-            <Card className="bg-white/5 backdrop-blur-sm border-white/10">
-              <CardHeader>
-                <CardTitle className="text-2xl text-white flex items-center gap-3">
-                  <User className="text-[#d6c95fc6]" size={28} />
-                  Who I Am
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-gray-300 leading-relaxed">
-                  I'm a dedicated full-stack software developer with a passion for creating innovative digital solutions. 
-                  With over 4 years of experience in web development, I specialize in building scalable applications 
-                  that deliver exceptional user experiences.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white/5 backdrop-blur-sm border-white/10">
+            <Card className="bg-white/5 backdrop-blur-sm border-white/10 h-full flex flex-col">
               <CardHeader>
                 <CardTitle className="text-2xl text-white flex items-center gap-3">
                   <Palette className="text-[#d6c95fc6]" size={28} />
                   What I Do
                 </CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="flex-1 flex flex-col">
                 <p className="text-gray-300 leading-relaxed mb-4">
                   Combining beautiful design with powerful functionality. From concept to Production.
                 </p>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 gap-2 flex-1">
                   {skills.map((skill, index) => (
                     <motion.div
                       key={skill}
