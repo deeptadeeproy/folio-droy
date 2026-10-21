@@ -1,377 +1,164 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
-import { useIntersectionObserver } from '../utils/useIntersectionObserver'
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
-import { SectionHeader, GlassCard, AnimatedContainer } from './shared'
-import { Button } from './ui/button'
-import { 
-  Briefcase, 
-  Calendar, 
-  MapPin, 
-  ExternalLink, 
-  Award,
-  Users,
-  TrendingUp,
-  Star
-} from 'lucide-react'
+﻿import React from 'react'
+import { ArrowDownTrayIcon } from '@heroicons/react/24/outline'
+import { site } from '../lib/site'
+import { useReveal } from '../utils/useReveal'
 import tiffanyLogo from '../assets/logos/tiffany.svg'
 import gapLogo from '../assets/logos/gap.svg'
 import cmacgmLogo from '../assets/logos/cmacgm.svg'
 
+const entries = [
+  {
+    id: 'role',
+    title: 'Senior Full Stack Developer, Infosys',
+    meta: '2021 to present · Bengaluru',
+    body: 'I build and maintain enterprise applications for Infosys clients with React, Node.js, Java and AWS. I also review code, mentor newer engineers and help run the CI/CD pipelines our teams ship through.',
+  },
+  {
+    id: 'own',
+    title: 'What I own day to day',
+    body: 'Features from end to end: API design in Node.js or Spring Boot, the React interface, PostgreSQL schemas and the Docker build that ships them.',
+  },
+  {
+    id: 'stack',
+    title: 'Stack at work',
+    body: 'React, TypeScript, Java with Spring Boot, Node.js, PostgreSQL, Docker and AWS.',
+  },
+  {
+    id: 'team',
+    title: 'How I work with a team',
+    body: 'Small pull requests, written-down decisions and reviews that explain the why. New teammates get pairing time, not just a wiki link.',
+  },
+  {
+    id: 'education',
+    title: 'Education: B.Tech, Electrical Engineering',
+    meta: 'KIIT University, Bhubaneswar · 2017 to 2021',
+    body: 'Electrical engineering core with coursework in computer science, data structures and systems architecture.',
+  },
+]
+
+const clients = [
+  { name: 'Tiffany & Co.', sector: 'Luxury retail', logo: tiffanyLogo },
+  { name: 'GAP', sector: 'Fashion retail', logo: gapLogo },
+  { name: 'CMA CGM', sector: 'Shipping and logistics', logo: cmacgmLogo },
+]
+
+const Row = ({ entry, index }) => (
+  <div data-reveal className="reveal border-b border-divider py-7 flex items-start gap-5">
+    <span className="tabular text-[15px] text-muted pt-1 w-[52px] flex-none">
+      {String(index + 1).padStart(2, '0')}
+    </span>
+    <div className="flex-1 min-w-0">
+      <h3 className="text-[clamp(18px,1.6vw,20px)] font-semibold leading-snug">
+        {entry.title}
+      </h3>
+      {entry.meta && <p className="mt-1 text-[14px] text-muted">{entry.meta}</p>}
+      <p className="mt-3 max-w-prose text-[17px] text-muted">{entry.body}</p>
+    </div>
+  </div>
+)
+
 const Experience = () => {
-  const [selectedCategory, setSelectedCategory] = useState('all')
-  const [isScrolling, setIsScrolling] = useState(false)
-  const scrollTimeoutRef = useRef(null)
-  const [ref, inView] = useIntersectionObserver()
-
-  // Handle scroll detection for client cards
-  const handleScroll = () => {
-    setIsScrolling(true)
-    if (scrollTimeoutRef.current) {
-      clearTimeout(scrollTimeoutRef.current)
-    }
-    scrollTimeoutRef.current = setTimeout(() => {
-      setIsScrolling(false)
-    }, 150) // Wait 150ms after scroll stops to re-enable hover
-  }
-
-  // Cleanup timeout on unmount
-  useEffect(() => {
-    return () => {
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current)
-      }
-    }
-  }, [])
-
-  const experiences = [
-    {
-      id: 1,
-      title: 'Senior Full Stack Developer',
-      company: 'Infosys',
-      location: 'Bengaluru, India',
-      period: '2021 - Present',
-      description: 'Leading development of enterprise-level applications using React, Node.js, Java, and cloud technologies. Mentoring junior developers and implementing best practices.',
-      achievements: [
-        'Led a team of 5 developers to deliver 3 major projects',
-        'Improved application performance by 40%',
-        'Implemented CI/CD pipeline reducing deployment time by 60%',
-        'Mentored 3 junior developers to senior level'
-      ],
-      technologies: ['React', 'Java', 'Node.js', 'AWS', 'Docker', 'PostgreSQL'],
-      type: 'work'
-    }
-  ]
-
-  const education = [
-    {
-      id: 1,
-      title: 'Bachelor of Technology, Electrical Engineering',
-      institution: 'KIIT University',
-      location: 'Bhubaneshwar, India',
-      period: '2021',
-      description: 'Major in Electrical Engineering with minor in Computer Science',
-      achievements: [
-        'GPA: 8.0/10.0',
-        'Computer Science Club President',
-        'Internship at Appsbee'
-      ],
-      type: 'education'
-    }
-  ]
-
-
+  const ref = useReveal(60)
+  const bandRef = useReveal(0)
 
   return (
-    <section id="experience" className="py-20 relative cursor-default">
-      <div className="container mx-auto px-6 cursor-default">
-        <SectionHeader
-          ref={ref}
-          title="My"
-          gradientText="Experience"
-          subtitle="A journey through my professional experience, education, and continuous learning in the world of technology."
-        />
-
-        {/* Work Experience */}
-        <div className="mb-20 cursor-default">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-center mb-12 cursor-default"
-          >
-            <h3 className="text-3xl font-bold text-white mb-4 flex items-center justify-center gap-3 cursor-default">
-              <Briefcase className="text-white" size={32} />
-              Work Experience
-            </h3>
-          </motion.div>
-
-          <div className="relative cursor-default">
-            {/* Timeline line */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-white to-gray-400 hidden md:block"></div>
-            
-            <div className="space-y-0">
-              {experiences.map((exp, index) => (
-                <motion.div
-                  key={exp.id}
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.8, delay: 0.4 + index * 0.2 }}
-                  className="relative flex items-start"
-                >
-                  {/* Timeline dot */}
-                  <div className="absolute left-6 w-4 h-4 bg-gradient-to-r from-white to-gray-400 rounded-full border-4 border-zinc-950 z-10 hidden md:block"></div>
-                  
-                  <div className="md:ml-16 flex-1">
-                    <Card className="glass-effect border-white/10 hover:border-white/20 transition-all duration-300">
-                      <CardHeader>
-                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                          <div>
-                            <CardTitle className="text-2xl text-white mb-2">{exp.title}</CardTitle>
-                            <div className="flex flex-wrap items-center gap-4 text-gray-400">
-                              <div className="flex items-center gap-2">
-                                <Briefcase size={16} />
-                                <span className="text-white font-medium">{exp.company}</span>
-                              </div>
-                              <div className="flex items-center gap-2">
-                                <MapPin size={16} />
-                                <span>{exp.location}</span>
-                              </div>
-                              <div className="flex items-center gap-2">
-                                <Calendar size={16} />
-                                <span>{exp.period}</span>
-                              </div>
-                            </div>
-                          </div>
-                          <a href="https://www.infosys.com/" target="_blank" rel="noopener noreferrer" className="focus:outline-none">
-                            <Button variant="outline" size="sm" className="text-white border-white/20 hover:bg-white/10 focus:outline-none">
-                              <ExternalLink size={16} className="mr-2" />
-                              View Company
-                            </Button>
-                          </a>
-                        </div>
-                      </CardHeader>
-                      <CardContent className="space-y-6">
-                        <p className="text-gray-300 leading-relaxed">{exp.description}</p>
-                        
-                        <div>
-                          <h4 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-                            <Award className="text-yellow-400" size={20} />
-                            Key Achievements
-                          </h4>
-                          <ul className="space-y-2">
-                            {exp.achievements.map((achievement, achIndex) => (
-                              <motion.li
-                                key={achIndex}
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={inView ? { opacity: 1, x: 0 } : {}}
-                                transition={{ duration: 0.5, delay: 0.6 + index * 0.2 + achIndex * 0.1 }}
-                                className="flex items-start gap-3 text-gray-300"
-                              >
-                                <div className="w-2 h-2 bg-gray-300 md:bg-white rounded-full mt-2 flex-shrink-0"></div>
-                                <span className="text-sm">{achievement}</span>
-                              </motion.li>
-                            ))}
-                          </ul>
-                        </div>
-
-                        <div>
-                          <h4 className="text-lg font-semibold text-white mb-3">Technologies Used</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {exp.technologies.map((tech, techIndex) => (
-                              <span
-                                key={tech}
-                                className="px-3 py-1 bg-white/10 text-white text-xs rounded-full border border-white/20"
-                              >
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+    <>
+      <section id="experience" className="section" ref={ref}>
+        <div className="shell">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-center gap-4 lg:gap-8">
+            <h2 className="label order-1 lg:order-2">Experience</h2>
+            <span aria-hidden="true" className="hidden lg:block order-2 w-px h-10 bg-divider" />
+            <p className="order-2 lg:order-1 headline">Where I work</p>
           </div>
-        </div>
 
-        {/* Clients */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mb-20"
-        >
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-white mb-4">
-              Notable <span className="gradient-text">Clients</span>
-            </h3>
-            <p className="text-gray-400">Trusted by leading global brands</p>
-          </div>
-          <div className="relative">
-            {/* Desktop: Centered, non-scrollable */}
-            <div className="hidden md:flex gap-8 md:gap-12 justify-center">
-              {[
-                { name: 'Tiffany & Co.', type: 'Luxury Retail', logo: tiffanyLogo },
-                { name: 'GAP', type: 'Fashion Retail', logo: gapLogo },
-                { name: 'CMA-CGM', type: 'Shipping & Logistics', logo: cmacgmLogo }
-              ].map((client, index) => (
-                <motion.div
-                  key={client.name}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={inView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.6, delay: 1.0 + index * 0.2 }}
-                  className="text-center p-4 min-w-[250px] w-[250px] h-40 flex flex-col justify-center"
-                >
-                      <div className="flex justify-center mb-4">
-                        <img 
-                          src={client.logo} 
-                          alt={`${client.name} logo`} 
-                          className="h-12 w-auto object-contain filter brightness-0 invert"
-                        />
-                      </div>
-                      <div className="text-sm text-gray-400">{client.type}</div>
-                </motion.div>
+          <div className="mt-14 grid gap-12 lg:grid-cols-[63fr_28fr] lg:gap-16">
+            <div className="border-t border-divider">
+              {entries.map((entry, index) => (
+                <Row key={entry.id} entry={entry} index={index} />
               ))}
             </div>
 
-            {/* Mobile: Horizontal scrollable */}
-            <div className="md:hidden flex gap-4 md:gap-12 overflow-x-auto scrollbar-hide pb-4 pl-4" onScroll={handleScroll}>
-              {[
-                { name: 'Tiffany & Co.', type: 'Luxury Retail', logo: tiffanyLogo },
-                { name: 'GAP', type: 'Fashion Retail', logo: gapLogo },
-                { name: 'CMA-CGM', type: 'Shipping & Logistics', logo: cmacgmLogo }
-              ].map((client, index, arr) => (
-                <motion.div
-                  key={client.name}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={inView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.6, delay: 1.0 + index * 0.2 }}
-                  className={`text-center flex-shrink-0 p-0 min-w-[220px] w-[220px] h-40 flex flex-col justify-center${index === arr.length - 1 ? ' pr-4' : ''}`}
-                >
-                      <div className="flex justify-center mb-4">
-                        <img 
-                          src={client.logo} 
-                          alt={`${client.name} logo`} 
-                          className="h-10 w-auto object-contain filter brightness-0 invert"
-                        />
-                      </div>
-                      <div className="text-sm text-gray-400">{client.type}</div>
-                </motion.div>
-              ))}
-            </div>
-            
-            {/* Scroll indicator for mobile */}
-            <div className="flex justify-center mt-4 md:hidden">
-              <div className="flex gap-2">
-                <div className="w-2 h-2 bg-white/30 rounded-full"></div>
-                <div className="w-2 h-2 bg-white/30 rounded-full"></div>
-                <div className="w-2 h-2 bg-white/30 rounded-full"></div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Education */}
-        <div className="mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="text-center mb-12"
-          >
-            <h3 className="text-3xl font-bold text-white mb-4 flex items-center justify-center gap-3">
-              <TrendingUp className="text-blue-400" size={32} />
-              Education
-            </h3>
-          </motion.div>
-
-          <div className="flex justify-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 1 }}
-              className="max-w-2xl w-full"
-            >
-              <Card className="bg-white/5 backdrop-blur-sm border-white/10 hover:border-blue-400/30 transition-all duration-300">
-                <CardHeader>
-                  <CardTitle className="text-2xl text-white mb-4 text-center">Academic Background</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
-                    <h4 className="text-xl font-semibold text-white">{education[0].title}</h4>
-                    <span className="text-blue-300 font-medium">{education[0].period}</span>
-                  </div>
-                  <div className="flex flex-wrap items-center gap-4 text-gray-400 mb-3">
-                    <div className="flex items-center gap-2">
-                      <Briefcase size={16} />
-                      <span className="text-blue-300">{education[0].institution}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <MapPin size={16} />
-                      <span>{education[0].location}</span>
-                    </div>
-                  </div>
-                  <p className="text-gray-300 leading-relaxed mb-4">{education[0].description}</p>
-                  <div>
-                    <h5 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-                      <Star className="text-yellow-400" size={18} />
-                      Key Achievements
-                    </h5>
-                    <ul className="space-y-2">
-                      {education[0].achievements.map((achievement, achIndex) => (
-                        <li key={achIndex} className="flex items-start gap-3 text-gray-300">
-                          <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-sm">{achievement}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </div>
-        </div>
-
-
-
-        {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 1.2 }}
-          className="mt-20"
-        >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { icon: Users, value: '50+', label: 'Team Members Led' },
-              { icon: TrendingUp, value: '4+', label: 'High Value Projects' },
-              { icon: Award, value: '8+', label: 'Best Performer' },
-              { icon: Star, value: '100%', label: 'Satisfaction' }
-            ].map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 30 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 1.4 + index * 0.1 }}
-                className="text-center"
+            <aside data-reveal className="reveal">
+              <div
+                className="rounded-[12px] p-7 aspect-[1/0.93] flex flex-col justify-between"
+                style={{ background: 'var(--surface-alt)' }}
               >
-                <div className="p-4 rounded-lg glass-effect mb-3 inline-block">
-                  <stat.icon size={32} className="text-white" />
-                </div>
-                <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
-                <div className="text-gray-400 text-sm">{stat.label}</div>
-              </motion.div>
-            ))}
+                <p className="text-[13px] uppercase tracking-[0.16em] text-muted">Since 2021</p>
+                <p className="display text-[clamp(28px,3vw,40px)] leading-[1.05]">
+                  Five years of enterprise delivery, one page of it here.
+                </p>
+              </div>
+              <h3 className="mt-8 text-[clamp(26px,2.4vw,36px)] font-bold leading-[1.05] tracking-[-0.03em]">
+                Want the full
+                <br />
+                history?
+              </h3>
+              <a
+                href={site.resume}
+                download={site.resumeFileName}
+                className="mt-6 w-full h-14 rounded-[8px] band-ink inline-flex items-center justify-between px-6 text-[14px] font-semibold uppercase tracking-[0.14em] hover:opacity-90 transition-opacity duration-150"
+              >
+                Download resume
+                <span className="w-8 h-8 rounded-full bg-accent inline-flex items-center justify-center text-onAccent">
+                  <ArrowDownTrayIcon className="w-4 h-4" aria-hidden="true" />
+                </span>
+              </a>
+            </aside>
           </div>
-        </motion.div>
+        </div>
+      </section>
 
+      {/* Client engagements band */}
+      <section className="band-ink py-16 md:py-24" ref={bandRef} aria-labelledby="clients-heading">
+        <div className="shell">
+          <h2 id="clients-heading" className="sr-only">
+            Client engagements through Infosys
+          </h2>
+          <div className="flex flex-col md:flex-row md:items-center gap-5">
+            <span aria-hidden="true" className="hidden md:flex flex-1 items-center gap-2">
+              <span className="flex-1 h-px bg-white/30" />
+              <span className="w-2 h-2 rounded-full bg-white/50" />
+            </span>
+            <p className="text-[13px] uppercase tracking-[0.16em] on-ink flex items-center gap-3">
+              <span className="w-2.5 h-2.5 bg-accent" aria-hidden="true" />
+              Client engagements
+              <span style={{ color: 'var(--accent)' }}>//</span>
+              <span className="on-ink-muted">via Infosys</span>
+            </p>
+          </div>
 
-      </div>
-    </section>
+          <ul className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-px" style={{ background: 'rgba(255,255,255,0.18)' }}>
+            {clients.map((client) => (
+              <li
+                key={client.name}
+                data-reveal
+                className="reveal band-ink aspect-square p-5 flex flex-col justify-between"
+              >
+                <img
+                  src={client.logo}
+                  alt={`${client.name} logo`}
+                  className="w-[45%] max-h-[38%] object-contain object-left"
+                  style={{ filter: 'brightness(0) invert(1)' }}
+                  loading="lazy"
+                />
+                <span className="text-[13px] on-ink-muted">
+                  <span className="block on-ink font-medium">{client.name}</span>
+                  {client.sector}
+                </span>
+              </li>
+            ))}
+            <li data-reveal className="reveal band-ink aspect-square p-5 flex flex-col justify-between">
+              <span className="text-[26px] font-semibold on-ink">Infosys</span>
+              <span className="text-[13px] on-ink-muted">
+                <span className="block on-ink font-medium">Employer</span>
+                2021 to present
+              </span>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </>
   )
 }
 
-export default Experience 
+export default Experience

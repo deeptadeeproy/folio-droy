@@ -1,140 +1,104 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { useIntersectionObserver } from '../utils/useIntersectionObserver'
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
-import { Code, Palette, Target, Award, Heart } from 'lucide-react'
-import { SectionHeader, GlassCard, AnimatedContainer } from './shared'
+﻿import React from 'react'
+import { site } from '../lib/site'
+import { useReveal } from '../utils/useReveal'
+
+const details = [
+  ['Current role', 'Senior Full Stack Developer'],
+  ['Company', 'Infosys, Bengaluru'],
+  ['Working since', '2021'],
+  ['Core stack', 'React, Node.js, Java'],
+  ['Also works with', 'TypeScript, Spring Boot, PostgreSQL'],
+  ['Builds and delivery', 'Docker, Jenkins, AWS'],
+  ['Education', 'B.Tech, KIIT University'],
+  ['Based in', 'Bengaluru, India'],
+]
 
 const About = () => {
-  const [ref, inView] = useIntersectionObserver()
-
-  const stats = [
-    { icon: Code, value: '50+', label: 'Projects Completed' },
-    { icon: Award, value: '4+', label: 'Years Experience' },
-    { icon: Heart, value: '100%', label: 'Satisfaction' },
-    { icon: Target, value: '24/7', label: 'Support Available' }
-  ]
-
-  const skills = [
-    'React & Next.js', 'Node.js & Express', 'Java & Spring Boot', 'PostgreSQL & MongoDB',
-    'TypeScript', 'Tailwind CSS', 'Docker & Firebase', 'GraphQL & REST APIs'
-  ]
+  const ref = useReveal(80)
 
   return (
-    <section id="about" className="py-20 relative cursor-default">
-      <div className="container mx-auto px-6 cursor-default">
-        <SectionHeader
-          ref={ref}
-          title="About"
-          gradientText="Me"
-          subtitle="Passionate full-stack developer with a love for creating beautiful, functional, and user-centric digital experiences."
-        />
+    <section id="about" className="band-ink py-20 md:py-28" ref={ref}>
+      <div className="shell grid gap-12 lg:grid-cols-[52fr_40fr] lg:gap-[8%] lg:items-center">
+        <div data-reveal className="reveal">
+          <p className="text-[13px] uppercase tracking-[0.16em] flex items-center gap-3 on-ink">
+            <span className="w-2.5 h-2.5 bg-accent" aria-hidden="true" />
+            About
+          </p>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-stretch mb-20 cursor-default">
-          {/* Left side - Stats */}
-          <AnimatedContainer
-            direction="left"
-            delay={0.2}
-            inView={inView}
-            className="space-y-8 cursor-default"
-          >
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-6 cursor-default">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-                  className="text-center"
-                >
-                  <div className="p-4 rounded-lg glass-effect mb-3 inline-block">
-                    <stat.icon size={32} className="text-[#d6c95fc6]" />
-                  </div>
-                  <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
-                  <div className="text-gray-400 text-sm">{stat.label}</div>
-                </motion.div>
-              ))}
-            </div>
-          </AnimatedContainer>
+          <h2 className="mt-7 display text-[clamp(34px,4.4vw,64px)] leading-[1.04] on-ink">
+            I would rather ship something
+            <br className="hidden md:block" /> small and solid than something
+            <br className="hidden md:block" /> clever and brittle.
+          </h2>
 
-          {/* Right side - Content */}
-          <AnimatedContainer
-            direction="right"
-            delay={0.4}
-            inView={inView}
-            className="h-full cursor-default"
-          >
-            <Card className="bg-white/5 backdrop-blur-sm border-white/10 h-full flex flex-col">
-              <CardHeader>
-                <CardTitle className="text-2xl text-white flex items-center gap-3">
-                  <Palette className="text-[#d6c95fc6]" size={28} />
-                  What I Do
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="flex-1 flex flex-col">
-                <p className="text-gray-300 leading-relaxed mb-4">
-                  Combining beautiful design with powerful functionality. From concept to Production.
-                </p>
-                <div className="grid grid-cols-2 gap-2 flex-1">
-                  {skills.map((skill, index) => (
-                    <motion.div
-                      key={skill}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={inView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ duration: 0.5, delay: 0.6 + index * 0.05 }}
-                      className="flex items-center gap-2 text-gray-300"
-                    >
-                      <div className="w-2 h-2 bg-[#d6c95fc6] rounded-full"></div>
-                      <span className="text-sm">{skill}</span>
-                    </motion.div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </AnimatedContainer>
+          <p className="mt-8 text-[18px] on-ink-muted max-w-prose">
+            I have spent about five years at Infosys building enterprise applications, mostly in
+            React, Node.js and Java. The parts I enjoy are the unglamorous ones: naming things well,
+            keeping a schema honest, making a slow page fast and leaving the codebase easier to
+            read than I found it. Outside work I build side projects to try a platform or an API I
+            have not used yet.
+          </p>
+
+          <div className="mt-10 flex flex-wrap gap-3">
+            <a href={`mailto:${site.email}`} className="btn btn-primary">
+              Email me
+              <span className="arrow" aria-hidden="true">&#8594;</span>
+            </a>
+            <a
+              href="#work"
+              className="btn"
+              style={{ border: '1px solid rgba(246,241,232,0.45)', color: '#F6F1E8' }}
+            >
+              See the work
+            </a>
+          </div>
         </div>
 
-        {/* Values section */}
-        <AnimatedContainer
-          delay={0.6}
-          inView={inView}
-          className="text-center cursor-default"
-        >
-          <h3 className="text-3xl font-bold text-white mb-12 cursor-default">
-            Core <span className="gradient-text">Values</span>
-          </h3>
-          <div className="grid md:grid-cols-3 gap-8 cursor-default">
-            {[
-              {
-                title: 'Innovation',
-                description: 'Exploring new technologies, pioneering creative solutions to solve complex problems.'
-              },
-              {
-                title: 'Quality',
-                description: 'Committed to writing clean, efficient, and maintainable code that stands the test of time.'
-              },
-              {
-                title: 'Collaboration',
-                description: 'Believe in the power of teamwork and open communication to deliver exceptional results.'
-              }
-            ].map((value, index) => (
-              <motion.div
-                key={value.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
-                className="p-6 transition-all duration-300"
-              >
-                <h4 className="text-xl font-semibold text-white mb-3">{value.title}</h4>
-                <p className="text-gray-400 leading-relaxed">{value.description}</p>
-              </motion.div>
-            ))}
+        <div data-reveal className="reveal">
+          <div
+            className="rounded-[14px] p-7 md:p-9"
+            style={{ background: 'var(--canvas)', color: 'var(--ink)' }}
+          >
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-[30px] font-bold tracking-[-0.03em]">Deeptadeep Roy</p>
+                <p className="text-[14px] text-muted">Senior full stack engineer</p>
+              </div>
+              <span className="w-2.5 h-2.5 mt-3 bg-accent" aria-hidden="true" />
+            </div>
+
+            <span className="block mt-6 h-px bg-divider" aria-hidden="true" />
+
+            <dl className="mt-5 space-y-3">
+              {details.map(([key, value]) => (
+                <div key={key} className="flex items-baseline justify-between gap-6 text-[16px]">
+                  <dt className="text-muted flex-none">{key}</dt>
+                  <dd className="font-semibold text-right">{value}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <span className="block mt-5 h-px bg-divider" aria-hidden="true" />
+
+            <div className="mt-5 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+              <span className="text-[16px] text-muted">Open to</span>
+              <span className="text-[20px] font-bold tracking-[-0.02em] text-right">
+                Senior engineering roles
+              </span>
+            </div>
+
+            <a
+              href={`mailto:${site.email}`}
+              className="mt-5 flex items-center justify-between gap-4 text-[15px] font-medium hover:text-accentText transition-colors duration-150"
+            >
+              {site.email}
+              <span aria-hidden="true">&#8594;</span>
+            </a>
           </div>
-        </AnimatedContainer>
+        </div>
       </div>
     </section>
   )
 }
 
-export default About 
+export default About

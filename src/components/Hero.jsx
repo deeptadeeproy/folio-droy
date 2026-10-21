@@ -1,171 +1,106 @@
-import React, { useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
-import { Link } from 'react-scroll'
-import { TypeAnimation } from 'react-type-animation'
-import { Button } from './ui/button'
-import { Github, Linkedin, Mail, Download, Mouse } from 'lucide-react'
-import resumeFile from '../assets/resume/DeeptadeepRoy_resume.pdf'
+﻿import React from 'react'
+import { ArrowDownTrayIcon } from '@heroicons/react/24/outline'
+import { site } from '../lib/site'
+import { GithubMark, LinkedinMark } from './icons'
+import { AdminConsole } from './renders'
 
-const Hero = () => {
+const Hero = () => (
+  <section
+    id="top"
+    className="relative overflow-hidden"
+    style={{ paddingTop: 'calc(var(--nav-h) + 24px)' }}
+  >
+    <div
+      className="relative w-full mx-auto lg:min-h-[82svh] flex flex-col justify-center py-10 lg:py-14"
+      style={{ maxWidth: '1760px', paddingInline: 'var(--gutter)' }}
+    >
+      {/* Headline left, tilted card right. The card has its own grid column,
+          so the headline can run as large as its column allows without
+          ever passing under the card. */}
+      <div className="grid gap-10 lg:grid-cols-[1fr_37%] lg:items-center lg:gap-14">
+        <h1 className="display text-ink text-center lg:text-left text-[clamp(52px,11vw,88px)] lg:text-[clamp(56px,8.4vw,144px)]">
+          <span className="enter block" style={{ animationDelay: '140ms' }}>
+            Careful software,
+          </span>
+          <span className="enter block" style={{ animationDelay: '210ms' }}>
+            end to end.
+          </span>
+        </h1>
 
-  const handleDownloadCV = () => {
-    const link = document.createElement('a')
-    link.href = resumeFile
-    link.download = 'DeeptadeepRoy_resume.pdf'
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-  }
-
-  const socialLinks = [
-    { icon: Github, href: 'https://github.com/deeptadeeproy', label: 'GitHub', color: 'hover:text-gray-300' },
-    { icon: Linkedin, href: 'https://in.linkedin.com/in/deeptadeeproy', label: 'LinkedIn', color: 'hover:text-blue-400' },
-    { icon: Mail, href: 'mailto:deeptadeeproy@yahoo.in', label: 'Email', color: 'hover:text-purple-300' }
-  ]
-
-  return (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-
-      
-
-
-      <div className="container mx-auto px-6 relative z-10 cursor-default">
-        <div className="text-center max-w-4xl mx-auto pt-5 md:pt-20 cursor-default">
-          {/* Main content */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="space-y-8 cursor-default"
-          >
-            {/* Greeting */}
-            <motion.p
-              className="text-lg md:text-xl text-purple-300 font-medium"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
+        {/* Card stack */}
+        <div className="flex justify-center lg:justify-end">
+          <div className="relative w-[78%] sm:w-[56%] lg:w-full max-w-[460px]">
+            <div
+              aria-hidden="true"
+              className="enter-card absolute inset-0 rounded-[20px]"
+              style={{
+                '--tilt': '-4deg',
+                background: '#141311',
+                animationDelay: '300ms',
+                marginLeft: 12,
+                marginTop: 14,
+              }}
+            />
+            <article
+              className="enter-card relative rounded-[20px] overflow-hidden shadow-[0_24px_60px_-40px_rgba(21,17,10,0.55)]"
+              style={{ '--tilt': '-7deg', animationDelay: '360ms' }}
             >
-            </motion.p>
-
-            {/* Name */}
-            <motion.h1
-              className="hero-title text-5xl md:text-7xl lg:text-8xl font-bold text-white"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-            >
-              <span className="gradient-text-button">Deeptadeep Roy</span>
-            </motion.h1>
-
-            {/* Typewriter effect */}
-            <motion.div
-              className="hero-subtitle text-xl md:text-2xl lg:text-3xl text-gray-300 font-medium min-h-[2rem]"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-            >
-              <TypeAnimation
-                sequence={[
-                  'Full Stack Developer',
-                  2000,
-                  'UI/UX Designer',
-                  2000,
-                  'Problem Solver',
-                  2000,
-                  'Creative Thinker',
-                  2000,
-                  ''
-                ]}
-                wrapper="span"
-                speed={50}
-                repeat={Infinity}
-                className="gradient-text"
-              />
-            </motion.div>
-
-            {/* Description */}
-            <motion.p
-              className="hero-subtitle text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-            >
-              Creating digital experiences since 2019.
-            </motion.p>
-
-            {/* CTA Buttons */}
-            <motion.div
-              className="hero-cta flex flex-col sm:flex-row gap-4 justify-center items-center pt-8 cursor-default"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 }}
-            >
-              <Link to="projects" smooth={true} duration={800} className="w-[70%] sm:w-auto focus:outline-none">
-                <Button variant="gradient" size="lg" className="text-lg px-8 py-3 w-full sm:w-auto focus:outline-none">
-                  View My Work
-                </Button>
-              </Link>
-              <Button variant="glass" size="lg" className="text-lg px-8 py-3 w-[70%] sm:w-auto focus:outline-none" onClick={handleDownloadCV}>
-                <Download className="w-5 h-5 mr-2" />
-                Download CV
-              </Button>
-            </motion.div>
-
-            {/* Social Links */}
-            <motion.div
-              className="flex flex-col items-center space-y-6 pt-8 cursor-default"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2 }}
-            >
-              <div className="flex justify-center items-center space-x-6 cursor-default">
-                {socialLinks.map((social, index) => (
-                  <motion.a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`p-3 rounded-full glass-effect text-white transition-all duration-300 hover:scale-110 ${social.color}`}
-                    whileHover={{ y: -5 }}
-                    whileTap={{ scale: 0.95 }}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.4 + index * 0.1 }}
-                  >
-                    <social.icon size={24} />
-                  </motion.a>
-                ))}
+              <div className="aspect-[3/2.4]">
+                <AdminConsole compact />
               </div>
-              
-              {/* Scroll indicator */}
-              <motion.div
-                className="pt-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 2 }}
-              >
-                <Link to="about" smooth={true} duration={800} className="focus:outline-none">
-                  <motion.div
-                    className="flex flex-col items-center text-white/60 hover:text-white cursor-pointer focus:outline-none"
-                    animate={{ y: [0, 10, 0] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <span className="text-sm mb-2">Scroll Down ↓</span>
-                    <div className="relative">
-                      <Mouse size={30} className="mb-1" />
-                      
-                    </div>
-                  </motion.div>
-                </Link>
-              </motion.div>
-            </motion.div>
-          </motion.div>
+              <div className="p-5 band-ink">
+                <p className="text-[10px] uppercase tracking-[0.2em] on-ink-muted">Deeptadeep Roy</p>
+                <p className="mt-2 text-[17px] leading-snug on-ink">
+                  Personal project: an e-commerce store with an admin console.
+                </p>
+                <p className="mt-3 text-[10px] uppercase tracking-[0.16em] on-ink-muted">
+                  React &middot; Node.js &middot; MongoDB &middot; Stripe
+                </p>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
 
+      {/* Footer row of the hero */}
+      <div className="relative mt-14 lg:mt-16 grid gap-8 lg:grid-cols-2 lg:items-end">
+        <div className="enter" style={{ animationDelay: '430ms' }}>
+          <p className="max-w-[38ch] text-[17px] text-muted">
+            I build React, Node.js and Java/Spring applications for enterprise clients at Infosys,
+            and I care how they read, run and age.
+          </p>
+          <p className="mt-6 text-[12px] font-semibold uppercase tracking-[0.18em] text-muted leading-relaxed">
+            Senior Full Stack Engineer
+            <br />
+            Infosys, Bengaluru
+          </p>
+          <span className="mt-5 block w-[60px] h-px bg-divider" aria-hidden="true" />
+        </div>
 
-    </section>
-  )
-}
+        <div
+          className="enter flex flex-wrap items-center gap-x-7 gap-y-4 lg:justify-end"
+          style={{ animationDelay: '500ms' }}
+        >
+          <a href={site.resume} download={site.resumeFileName} className="link-u inline-flex items-center gap-2 text-[15px]">
+            <ArrowDownTrayIcon className="w-4 h-4" aria-hidden="true" />
+            Download resume
+          </a>
+          <a href={site.github} target="_blank" rel="noreferrer" className="link-u inline-flex items-center gap-2 text-[15px]">
+            <GithubMark className="w-4 h-4" />
+            GitHub
+          </a>
+          <a href={site.linkedin} target="_blank" rel="noreferrer" className="link-u inline-flex items-center gap-2 text-[15px]">
+            <LinkedinMark className="w-4 h-4" />
+            LinkedIn
+          </a>
+          <a href={`mailto:${site.email}`} className="btn btn-primary">
+            Email me
+            <span className="arrow" aria-hidden="true">&#8594;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+)
 
-export default Hero 
+export default Hero

@@ -1,293 +1,55 @@
-import React, { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { useIntersectionObserver } from '../utils/useIntersectionObserver'
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
-import { Button } from './ui/button'
-import { SectionHeader, GlassCard, AnimatedContainer, ContactItem } from './shared'
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Github, 
-  Linkedin, 
-  Instagram,
-  MessageSquare,
-  Clock,
-  Globe,
-  Calendar
-} from 'lucide-react'
-
-// Add clock component
-function formatTime(date, timeZone) {
-  return date.toLocaleTimeString('en-US', {
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    hour12: true,
-    timeZone,
-  })
-}
-
-// Calendar component
-function CalendarComponent() {
-  const [currentDate, setCurrentDate] = useState(new Date())
-  
-  const currentMonth = currentDate.getMonth()
-  const currentYear = currentDate.getFullYear()
-  const today = new Date()
-  
-  const monthNames = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
-  ]
-  
-  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate()
-  const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay()
-  
-  const days = []
-  for (let i = 0; i < firstDayOfMonth; i++) {
-    days.push(null)
-  }
-  for (let i = 1; i <= daysInMonth; i++) {
-    days.push(i)
-  }
-  
-  const isToday = (day) => {
-    return day === today.getDate() && 
-           currentMonth === today.getMonth() && 
-           currentYear === today.getFullYear()
-  }
-  
-  const isCurrentMonth = () => {
-    return currentMonth === today.getMonth() && currentYear === today.getFullYear()
-  }
-  
-  return (
-    <div className="text-center">
-      <div className="mb-4">
-        <h3 className="text-xl font-bold text-white mb-1">
-          {monthNames[currentMonth]} {currentYear}
-        </h3>
-      </div>
-      
-      <div className="grid grid-cols-7 gap-1 mb-3">
-        {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-          <div key={day} className="text-xs text-gray-400 font-medium p-2">
-            {day}
-          </div>
-        ))}
-      </div>
-      
-      <div className="grid grid-cols-7 gap-1">
-        {days.map((day, index) => (
-          <div
-            key={index}
-            className={`
-              p-2 text-sm font-mono transition-all duration-300
-              ${day === null 
-                ? 'text-transparent' 
-                : isToday(day)
-                ? 'bg-white/10 text-white rounded-lg border border-white/20 !bg-white/10'
-                : 'text-gray-300 hover:text-white hover:bg-white/5 rounded-lg'
-              }
-            `}
-          >
-            {day || ''}
-          </div>
-        ))}
-      </div>
-      
-      {isCurrentMonth() && (
-        <div className="mt-4 pt-4 border-t border-white/10">
-          <p className="text-xs text-gray-400">
-            Today: {today.toLocaleDateString('en-US', { 
-              weekday: 'long', 
-              year: 'numeric', 
-              month: 'long', 
-              day: 'numeric' 
-            })}
-          </p>
-        </div>
-      )}
-    </div>
-  )
-}
-
-function TimeZoneClocks() {
-  const [now, setNow] = useState(new Date())
-  useEffect(() => {
-    const interval = setInterval(() => setNow(new Date()), 1000)
-    return () => clearInterval(interval)
-  }, [])
-  const userTime = formatTime(now)
-  const indiaTime = formatTime(now, 'Asia/Kolkata')
-  const userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone
-  return (
-    <div className="mt-8 p-7">
-      <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
-        <div className="flex flex-col items-center">
-          <span className="font-mono text-4xl text-gray-400" style={{ fontFamily: 'Geist Mono, monospace', fontSize: '2.25rem' }}>{userTime}</span>
-          <span className="text-xs text-gray-400 mt-2">Your Time ({userTZ})</span>
-        </div>
-        <div className="flex flex-col items-center">
-          <span className="font-mono text-4xl text-gray-400" style={{ fontFamily: 'Geist Mono, monospace', fontSize: '2.25rem' }}>{indiaTime}</span>
-          <span className="text-xs text-gray-400 mt-2">India Time (Asia/Kolkata)</span>
-        </div>
-      </div>
-    </div>
-  )
-}
+﻿import React from 'react'
+import { ArrowDownTrayIcon } from '@heroicons/react/24/outline'
+import { site } from '../lib/site'
+import { useReveal } from '../utils/useReveal'
+import { GithubMark, LinkedinMark } from './icons'
 
 const Contact = () => {
-  const [ref, inView] = useIntersectionObserver()
-
-  // Contact info JSON
-  const contactInfo = {
-    email: 'deeptadeeproy@yahoo.in',
-    phone: '+91 90738-40430',
-    location: 'Kolkata, India',
-    links: {
-      website: 'https://deeptadeep.dev',
-      github: 'https://github.com/deeptadeeproy',
-      linkedin: 'https://in.linkedin.com/in/deeptadeeproy',
-      instagram: 'https://instagram.com/deeptadeeproy'
-    }
-  };
-
-  const socialLinks = [
-    {
-      icon: Github,
-      name: 'GitHub',
-      url: contactInfo.links.github,
-      color: 'hover:text-gray-300'
-    },
-    {
-      icon: Linkedin,
-      name: 'LinkedIn',
-      url: contactInfo.links.linkedin,
-      color: 'hover:text-blue-400'
-    },
-    {
-      icon: Instagram,
-      name: 'Instagram',
-      url: contactInfo.links.instagram,
-      color: 'hover:text-pink-500'
-    }
-  ]
+  const ref = useReveal(90)
 
   return (
-    <section id="contact" className="py-20 relative cursor-default">
-      <div className="container mx-auto px-6 cursor-default">
-        <SectionHeader
-          ref={ref}
-          title="Get In"
-          gradientText="Touch"
-          subtitle="Ready to start your next project? Let's discuss how I can help bring your ideas to life."
-          className="mt-8 md:mt-0"
-        />
+    <section id="contact" className="section" ref={ref}>
+      <div className="shell">
+        <div
+          data-reveal
+          className="reveal rounded-[24px] overflow-hidden px-6 py-20 md:py-28 text-center"
+          style={{ background: 'var(--surface-alt)' }}
+        >
+          <p className="text-[14px] tracking-[0.04em] text-muted">
+            Deeptadeep Roy &mdash; open to senior engineering roles
+          </p>
 
-        <div className="grid lg:grid-cols-2 gap-8 justify-items-center lg:justify-items-start cursor-default">
-          {/* Calendar and Clock */}
-          <AnimatedContainer
-            direction="left"
-            delay={0.2}
-            inView={inView}
-            className="space-y-4 w-full order-1 lg:order-1"
-          >
-            <GlassCard
-              title="Calendar"
-              fullWidth
-              inView={inView}
-            >
-                <CalendarComponent />
-            </GlassCard>
-            <TimeZoneClocks />
-          </AnimatedContainer>
+          <h2 className="mt-6 display text-[clamp(36px,5.4vw,80px)] leading-[1.03] max-w-[18ch] mx-auto">
+            Tell me what you are building.
+          </h2>
 
-          {/* Contact Information */}
-          <AnimatedContainer
-            direction="right"
-            delay={0.4}
-            inView={inView}
-            className="space-y-4 order-2 lg:order-2"
-          >
-            <GlassCard
-              title="Let's Connect"
-              inView={inView}
-            >
-              <div className="space-y-6">
-                <p className="text-gray-300 leading-relaxed">
-                  Open to new opportunities, interesting projects, or diving into a conversation about technology and innovation.
-                </p>
-                
-                <div className="space-y-4">
-                  <ContactItem
-                    icon={Mail}
-                    title="Email"
-                    value={contactInfo.email}
-                    href={`mailto:${contactInfo.email}`} 
-                    iconColor="text-blue-400"
-                    hoverColor="text-blue-300"
-                    delay={0.4}
-                    inView={inView}
-                  />
-                  
-                  <ContactItem
-                    icon={Phone}
-                    title="Phone"
-                    value={contactInfo.phone}
-                    href={`tel:${contactInfo.phone.replace(/\s/g, '')}`} 
-                    iconColor="text-green-400"
-                    hoverColor="text-green-300"
-                    delay={0.5}
-                    inView={inView}
-                  />
-                  
-                  <ContactItem
-                    icon={MapPin}
-                    title="Location"
-                    value={contactInfo.location}
-                    href={`https://maps.google.com/?q=${encodeURIComponent(contactInfo.location)}`}
-                    iconColor="text-purple-400"
-                    delay={0.6}
-                    inView={inView}
-                  />
-                </div>
+          <a href={`mailto:${site.email}`} className="btn btn-primary mt-10 h-14 px-8 text-[15px] uppercase tracking-[0.12em]">
+            {site.email}
+            <span className="arrow" aria-hidden="true">&#8594;</span>
+          </a>
 
-                {/* Social Links */}
-                <div className="pt-4 border-t border-white/10">
-                  <h4 className="text-white font-medium mb-4 flex items-center gap-2">
-                    <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                    Follow Me
-                  </h4>
-                  <div className="flex gap-4">
-                    {socialLinks.map((social, index) => (
-                      <motion.a
-                        key={social.name}
-                        href={social.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`p-3 rounded-full glass-effect text-white transition-all duration-300 hover:scale-110 ${social.color} focus:outline-none`}
-                        whileHover={{ y: -5 }}
-                        whileTap={{ scale: 0.95 }}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={inView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                      >
-                        <social.icon size={24} />
-                      </motion.a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </GlassCard>
-          </AnimatedContainer>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+            <a href={site.resume} download={site.resumeFileName} className="link-u inline-flex items-center gap-2 text-[15px]">
+              <ArrowDownTrayIcon className="w-4 h-4" aria-hidden="true" />
+              Download resume
+            </a>
+            <a href={site.github} target="_blank" rel="noreferrer" className="link-u inline-flex items-center gap-2 text-[15px]">
+              <GithubMark className="w-4 h-4" />
+              GitHub
+            </a>
+            <a href={site.linkedin} target="_blank" rel="noreferrer" className="link-u inline-flex items-center gap-2 text-[15px]">
+              <LinkedinMark className="w-4 h-4" />
+              LinkedIn
+            </a>
+          </div>
+
+          <p className="mt-8 text-[15px] text-muted">
+            Based in Bengaluru, India. Happy to work with teams in other time zones.
+          </p>
         </div>
-
-
       </div>
     </section>
   )
 }
 
-export default Contact 
+export default Contact

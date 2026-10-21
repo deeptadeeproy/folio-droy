@@ -1,236 +1,157 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { useIntersectionObserver } from '../utils/useIntersectionObserver'
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
-import { SectionHeader, GlassCard, AnimatedContainer } from './shared'
-import { 
-  Code, 
-  Database, 
-  Palette, 
-  Cloud, 
-  Smartphone, 
-  Globe,
-  Zap,
-  Shield
-} from 'lucide-react'
-import ReactIcon from '../assets/icons/react.svg?react';
-import NodejsIcon from '../assets/icons/nodejs.svg?react';
-import TypescriptIcon from '../assets/icons/typescript.svg?react';
-import JavaIcon from '../assets/icons/java.svg?react';
-import MavenIcon from '../assets/icons/maven.svg?react';
-import DockerIcon from '../assets/icons/docker.svg?react';
-import JenkinsIcon from '../assets/icons/jenkins.svg?react';
-import GitIcon from '../assets/icons/git.svg?react';
-import MongodbIcon from '../assets/icons/mongodb.svg?react';
-import PostgresqlIcon from '../assets/icons/postgresql.svg?react';
-import FirebaseIcon from '../assets/icons/firebase.svg?react';
-import ExpressIcon from '../assets/icons/express.svg?react';
+﻿import React, { useRef, useState } from 'react'
+import { useReveal } from '../utils/useReveal'
+import ReactIcon from '../assets/icons/react.svg?react'
+import TypescriptIcon from '../assets/icons/typescript.svg?react'
+import NodejsIcon from '../assets/icons/nodejs.svg?react'
+import ExpressIcon from '../assets/icons/express.svg?react'
+import JavaIcon from '../assets/icons/java.svg?react'
+import MavenIcon from '../assets/icons/maven.svg?react'
+import PostgresqlIcon from '../assets/icons/postgresql.svg?react'
+import MongodbIcon from '../assets/icons/mongodb.svg?react'
+import FirebaseIcon from '../assets/icons/firebase.svg?react'
+import DockerIcon from '../assets/icons/docker.svg?react'
+import JenkinsIcon from '../assets/icons/jenkins.svg?react'
+import GitIcon from '../assets/icons/git.svg?react'
+import CloudflareIcon from '../assets/icons/cloudflare.svg?react'
+
+const groups = [
+  {
+    id: 'frontend',
+    name: 'Frontend',
+    caption: 'React, Next.js, TypeScript and Tailwind CSS. Accessible components and state that stays predictable.',
+    tools: [
+      { label: 'React', Icon: ReactIcon },
+      { label: 'TypeScript', Icon: TypescriptIcon },
+    ],
+  },
+  {
+    id: 'backend',
+    name: 'Backend',
+    caption: 'Node.js with Express and Java with Spring Boot and Maven. REST and GraphQL APIs, authentication and background jobs.',
+    tools: [
+      { label: 'Node.js', Icon: NodejsIcon },
+      { label: 'Express', Icon: ExpressIcon },
+      { label: 'Java', Icon: JavaIcon },
+      { label: 'Maven', Icon: MavenIcon },
+    ],
+  },
+  {
+    id: 'data',
+    name: 'Data',
+    caption: 'PostgreSQL and MongoDB for most work, and Firebase when a project needs realtime sync quickly.',
+    tools: [
+      { label: 'PostgreSQL', Icon: PostgresqlIcon },
+      { label: 'MongoDB', Icon: MongodbIcon },
+      { label: 'Firebase', Icon: FirebaseIcon },
+    ],
+  },
+  {
+    id: 'tooling',
+    name: 'Tooling',
+    caption: 'Docker, Jenkins and Git for builds and delivery, AWS and Cloudflare for hosting.',
+    tools: [
+      { label: 'Docker', Icon: DockerIcon },
+      { label: 'Jenkins', Icon: JenkinsIcon },
+      { label: 'Git', Icon: GitIcon },
+      { label: 'Cloudflare', Icon: CloudflareIcon },
+    ],
+  },
+]
+
+const ToolRow = ({ tools }) => (
+  <ul className="flex flex-wrap items-center gap-x-6 gap-y-3">
+    {tools.map(({ label, Icon }) => (
+      <li key={label} className="inline-flex items-center gap-2 text-[14px] text-muted">
+        <Icon className="w-7 h-7" style={{ filter: 'grayscale(1)', opacity: 0.85 }} aria-hidden="true" />
+        {label}
+      </li>
+    ))}
+  </ul>
+)
 
 const Skills = () => {
-  const [ref, inView] = useIntersectionObserver()
+  const [activeId, setActiveId] = useState(groups[0].id)
+  const ref = useReveal(80)
+  const tabsRef = useRef([])
 
-  const skillCategories = [
-    {
-      title: 'Frontend Development',
-      icon: Code,
-      color: 'from-blue-500 to-cyan-500',
-      skills: [
-        'React.js',
-        'Next.js',
-        'TypeScript',
-        'Tailwind CSS',
-        'HTML/CSS'
-      ]
-    },
-    {
-      title: 'Backend Development',
-      icon: Database,
-      color: 'from-green-500 to-emerald-500',
-      skills: [
-        'Node.js',
-        'Express.js',
-        'Java',
-        'Spring Boot',
-        'REST APIs'
-      ]
-    },
-    {
-      title: 'UI/UX Design',
-      icon: Palette,
-      color: 'from-white to-gray-400',
-      skills: [
-        'Figma',
-        'Adobe XD',
-        'Prototyping',
-        'User Research',
-        'Design Systems'
-      ]
-    },
-    {
-      title: 'DevOps & Cloud',
-      icon: Cloud,
-      color: 'from-orange-500 to-red-500',
-      skills: [
-        'Docker',
-        'Firebase',
-        'CI/CD',
-        'Git',
-        'Linux'
-      ]
-    },
-    {
-      title: 'Mobile Development',
-      icon: Smartphone,
-      color: 'from-white to-gray-400',
-      skills: [
-        'React Native',
-        'Flutter',
-        'Mobile UI',
-        'App Store',
-        'Performance'
-      ]
-    },
-    {
-      title: 'Other Technologies',
-      icon: Globe,
-      color: 'from-teal-500 to-blue-500',
-      skills: [
-        'GraphQL',
-        'MongoDB',
-        'PostgreSQL',
-        'Redis',
-        'WebSockets'
-      ]
-    }
-  ]
+  const active = groups.find((group) => group.id === activeId) ?? groups[0]
 
-  const technologies = [
-    { name: 'React', icon: ReactIcon },
-    { name: 'Node.js', icon: NodejsIcon },
-    { name: 'TypeScript', icon: TypescriptIcon },
-    { name: 'Java', icon: JavaIcon },
-    { name: 'Maven', icon: MavenIcon },
-    { name: 'Docker', icon: DockerIcon },
-    { name: 'Firebase', icon: FirebaseIcon },
-    { name: 'Jenkins', icon: JenkinsIcon },
-    { name: 'Git', icon: GitIcon },
-    { name: 'MongoDB', icon: MongodbIcon },
-    { name: 'PostgreSQL', icon: PostgresqlIcon },
-    { name: 'Express JS', icon: ExpressIcon }
-  ]
+  const onKeyDown = (event, index) => {
+    const keys = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }
+    const step = keys[event.key]
+    if (!step) return
+    event.preventDefault()
+    const next = (index + step + groups.length) % groups.length
+    setActiveId(groups[next].id)
+    tabsRef.current[next]?.focus()
+  }
 
   return (
-    <section id="skills" className="py-20 relative cursor-default">
-      <div className="container mx-auto px-6 cursor-default">
-        <SectionHeader
-          ref={ref}
-          title=""
-          gradientText="Skills"
-          subtitle="A comprehensive overview of my technical expertise and proficiency levels across various technologies and domains."
-        />
+    <section id="skills" className="section" ref={ref}>
+      <div className="shell">
+        <h2 className="sr-only">Skills and tools</h2>
 
-        {/* Skill Categories Grid */}
-        <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-20 cursor-default">
-          {skillCategories.map((category, categoryIndex) => (
-            <AnimatedContainer
-              key={category.title}
-              delay={categoryIndex * 0.1}
-              inView={inView}
-            >
-              <GlassCard
-                title={category.title}
-                icon={category.icon}
-                className="h-full"
-              >
-                <CardContent className="space-y-3">
-                  {category.skills.map((skill, skillIndex) => (
-                    <motion.div
-                      key={skill}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={inView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ duration: 0.5, delay: categoryIndex * 0.1 + skillIndex * 0.05 }}
-                      className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors duration-300"
-                    >
-                      <div className={`w-2 h-2 bg-gradient-to-r ${category.color} rounded-full`}></div>
-                      <span className="text-sm font-medium">{skill}</span>
-                    </motion.div>
-                  ))}
-                </CardContent>
-              </GlassCard>
-            </AnimatedContainer>
-          ))}
-        </div>
+        <div className="grid gap-12 lg:grid-cols-[64fr_27fr] lg:gap-[9%]">
+          {/* Stacked discipline list */}
+          <div role="tablist" aria-label="Skill groups" aria-orientation="vertical">
+            {groups.map((group, index) => {
+              const selected = group.id === activeId
+              return (
+                <div key={group.id} data-reveal className="reveal">
+                  <button
+                    ref={(node) => { tabsRef.current[index] = node }}
+                    role="tab"
+                    id={`skills-tab-${group.id}`}
+                    aria-selected={selected}
+                    aria-controls="skills-panel"
+                    tabIndex={selected ? 0 : -1}
+                    onFocus={() => setActiveId(group.id)}
+                    onMouseEnter={() => setActiveId(group.id)}
+                    onClick={() => setActiveId(group.id)}
+                    onKeyDown={(event) => onKeyDown(event, index)}
+                    className="block w-full text-left font-semibold tracking-[-0.035em] leading-[1] py-1 transition-colors duration-200 text-[clamp(40px,7vw,112px)]"
+                    style={{ color: selected ? 'var(--ink)' : 'rgba(21,17,10,0.3)' }}
+                  >
+                    {group.name}
+                  </button>
 
-        {/* Technology Stack */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-center cursor-default"
-        >
-          <h3 className="text-3xl font-bold text-white mb-12 cursor-default">
-            Technology <span className="gradient-text">Stack</span>
-          </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 cursor-default">
-            {technologies.map((tech, index) => (
-              <motion.div
-                key={tech.name}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={inView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                className="group"
-              >
-                <div className="p-6 rounded-lg bg-white/5 backdrop-blur-sm border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105 text-center">
-                  <div className="text-4xl mb-3 flex items-center justify-center h-12">
-                    <tech.icon className="h-10 w-10 text-[#d6c95fc6]" />
+                  {/* Mobile: every group keeps its own caption and tools */}
+                  <div className="lg:hidden pb-8 pt-2">
+                    <p className="text-[17px] text-muted max-w-prose">{group.caption}</p>
+                    <div className="mt-4">
+                      <ToolRow tools={group.tools} />
+                    </div>
                   </div>
-                  <h4 className="text-lg font-semibold text-white">{tech.name}</h4>
                 </div>
-              </motion.div>
-            ))}
+              )
+            })}
           </div>
-        </motion.div>
 
-        {/* Additional Skills */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 1 }}
-          className="mt-20"
-        >
-          <div className="w-full">
-            <Card className="bg-white/5 backdrop-blur-sm border-white/10 w-full">
-              <CardHeader>
-                <CardTitle className="text-2xl text-white flex items-center gap-3">
-                  <Zap className="text-yellow-400" size={28} />
-                  Soft Skills
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    'Problem Solving', 'Communication', 'Team Leadership', 'Time Management',
-                    'Critical Thinking', 'Adaptability', 'Creativity', 'Attention to Detail'
-                  ].map((skill, index) => (
-                    <motion.div
-                      key={skill}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={inView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ duration: 0.5, delay: 1.2 + index * 0.05 }}
-                      className="flex items-center gap-2 text-gray-300"
-                    >
-                      <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                      <span className="text-sm">{skill}</span>
-                    </motion.div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+          {/* Desktop companion panel */}
+          <div className="hidden lg:block">
+            <div className="aspect-square p-8 flex flex-col justify-end" style={{ background: 'var(--surface-alt)' }}>
+              <p className="text-[13px] uppercase tracking-[0.16em] text-muted">Toolkit</p>
+              <p className="mt-3 display text-[clamp(24px,2vw,34px)] leading-[1.08]">
+                The same stack, from the browser down to the build.
+              </p>
+            </div>
+            <div
+              id="skills-panel"
+              role="tabpanel"
+              aria-live="polite"
+              aria-labelledby={`skills-tab-${active.id}`}
+              className="mt-7 min-h-[180px]"
+            >
+              <p className="text-[clamp(18px,1.5vw,24px)] leading-snug">{active.caption}</p>
+              <div className="mt-6">
+                <ToolRow tools={active.tools} />
+              </div>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )
 }
 
-export default Skills 
+export default Skills
